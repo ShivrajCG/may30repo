@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.incentivesystem.dto.CarCompanyDto;
 import com.cg.incentivesystem.entites.CarCompany;
 import com.cg.incentivesystem.service.CarCompanyServiceImpl;
 
@@ -17,7 +18,7 @@ public class CarCompanyController {
 	@Autowired
 	CarCompanyServiceImpl comService;
 	@PostMapping
-	public ResponseEntity<String> addCarCompany(@RequestBody CarCompany comp) {
+	public ResponseEntity<String> addCarCompany(@RequestBody CarCompanyDto comp) {
 		comService.addCarCompany(comp);
 		return new ResponseEntity<String>("added", HttpStatus.OK);
 	}

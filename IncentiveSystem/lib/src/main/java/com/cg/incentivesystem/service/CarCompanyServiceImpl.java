@@ -1,37 +1,41 @@
 package com.cg.incentivesystem.service;
 
-import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.incentivesystem.dto.CarCompanyDto;
 import com.cg.incentivesystem.entites.CarCompany;
-import com.cg.incentivesystem.exception.CarCompanyAlreadyExistException;
+import com.cg.incentivesystem.entites.IncentiveDetails;
+import com.cg.incentivesystem.exception.CarCompanyNotFoundException;
 import com.cg.incentivesystem.repository.CarCompanyRepository;
+import com.cg.incentivesystem.repository.IncentiveDetailsRepository;
 
 @Service
 public class CarCompanyServiceImpl implements CarCompanyService {
 	@Autowired
-	CarCompanyRepository carComrepo;
+	CarCompanyRepository carcomrepo;
+	@Autowired
+	IncentiveDetailsRepository incerepo;
+	
 	@Override
-	public void addCarCompany(CarCompany comp) throws CarCompanyAlreadyExistException {
-		Optional<CarCompany> carCom = carComrepo.findById(comp.getCompanyId());
-		if(!carCom.isEmpty())
-			throw new CarCompanyAlreadyExistException();
-		carComrepo.save(comp);
-	}
-
-	@Override
-	public List<CarCompany> viewCarCompany() {
+	public void addCarCompany(CarCompanyDto comp) {
+		IncentiveDetails details =incerepo.getById(comp.getCompanyId());
+		if (details == null)
+			throw new CarCompanyNotFoundException();
 		
-		return carComrepo.findAll();
-	}
-
-	@Override
-	public void updateCarCompany(CarCompany comp) {
-		carComrepo.save(comp);
+		CarCompany company = new CarCompany();
+		company.setCompanyId(comp.getCompanyId());
+		company.setCompanyName(comp.getCompanyName());
 		
+		System.out.println(comp);
+			
 	}
 
-}
+
+	
+		
+	}	
+	
+
