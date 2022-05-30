@@ -22,7 +22,7 @@ public class CarCompany {
 	private String companyName;
 	@OneToMany(mappedBy = "carCom", cascade = CascadeType.ALL)
 	private List<CarDetails> carDetails;
-	@OneToMany(mappedBy = "carComDealer", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "carCom", cascade = CascadeType.ALL)
 	private List<CarDealer> carDealer;
 	public int getCompanyId() {
 		return companyId;

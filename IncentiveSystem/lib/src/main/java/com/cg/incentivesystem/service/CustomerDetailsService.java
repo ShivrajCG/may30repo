@@ -9,7 +9,7 @@ import com.cg.incentivesystem.exception.CustomerAlreadyExistException;
 import com.cg.incentivesystem.exception.CustomerNotFoundException;
 
 public interface CustomerDetailsService {
-	int addCustomer(CustomerDetailsDto cust) throws CustomerAlreadyExistException;
+	int addCustomer(CustomerDetailsDto custdto) throws CustomerAlreadyExistException;
 
 	List<CustomerDetails> viewAllCusts();
 
@@ -17,5 +17,5 @@ public interface CustomerDetailsService {
 
 	void updateCustomer(CustomerDetails cust);
 	
-	void deleteCustomer(int custId);
+	
 }

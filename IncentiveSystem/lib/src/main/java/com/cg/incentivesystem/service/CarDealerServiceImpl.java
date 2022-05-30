@@ -6,25 +6,36 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.incentivesystem.dto.CarDealerDto;
 import com.cg.incentivesystem.entites.CarCompany;
 import com.cg.incentivesystem.entites.CarDealer;
-import com.cg.incentivesystem.exception.CarCompanyAlreadyExistException;
+import com.cg.incentivesystem.exception.CarCompanyNotFoundException;
 import com.cg.incentivesystem.exception.DealerAlreadyExistException;
 import com.cg.incentivesystem.exception.DealerNotFoundException;
+import com.cg.incentivesystem.repository.CarCompanyRepository;
 import com.cg.incentivesystem.repository.CarDealerRepository;
 
 @Service
-public class CarDealerServiceImpl implements CarDealerService{
+public class CarDealerServiceImpl implements CarDealerService {
 	@Autowired
 	CarDealerRepository dealrepo;
+	@Autowired
+	CarCompanyRepository carComrepo;
 
 	@Override
-	public void addCarDealer(CarDealer deal) throws DealerAlreadyExistException {
-		Optional<CarDealer> cardealer = dealrepo.findById(deal.getDealerId());
-		System.out.println(cardealer);
-		if (!cardealer.isEmpty())
-			throw new DealerAlreadyExistException();
+	public int addCarDealer(CarDealerDto dealdto) throws DealerAlreadyExistException {
+		CarCompany carcom = carComrepo.getById(dealdto.getCompanyId());
+		if (carcom == null)
+			throw new CarCompanyNotFoundException();
+
+		CarDealer deal = new CarDealer();
+		deal.setDealerName(dealdto.getDealerName());
+		deal.setDealerBranch(dealdto.getDealerBranch());
+
+		deal.setCarCom(carcom);
 		dealrepo.save(deal);
+		System.out.println(dealdto);
+		return deal.getDealerId();
 
 	}
 
@@ -50,12 +61,9 @@ public class CarDealerServiceImpl implements CarDealerService{
 	@Override
 	public void deleteDealer(int dealerID) throws DealerNotFoundException {
 		Optional<CarDealer> dealer = dealrepo.findById(dealerID);
-		if(dealer.isEmpty())
+		if (dealer.isEmpty())
 			throw new DealerNotFoundException();
 		dealrepo.deleteById(dealerID);
 	}
-
-	
-	
 
 }

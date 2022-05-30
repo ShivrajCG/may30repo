@@ -1,20 +1,9 @@
 package com.cg.incentivesystem.dto;
 
-import java.util.List;
-import java.util.Set;
-
-import com.cg.incentivesystem.entites.BookingDetails;
-import com.cg.incentivesystem.entites.CarCompany;
-import com.cg.incentivesystem.entites.CustomerDetails;
-import com.cg.incentivesystem.entites.IncentiveDetails;
-
 public class CarDealerDto {
 	private String dealerName;
 	private String dealerBranch;
-	private Set<CustomerDetails> customers;
 	private int companyId;
-	private List<BookingDetails> bookingDetails;
-	private List<IncentiveDetails> incentiveDetails;
 
 	public String getDealerName() {
 		return dealerName;
@@ -32,14 +21,6 @@ public class CarDealerDto {
 		this.dealerBranch = dealerBranch;
 	}
 
-	public Set<CustomerDetails> getCustomers() {
-		return customers;
-	}
-
-	public void setCustomers(Set<CustomerDetails> customers) {
-		this.customers = customers;
-	}
-
 	public int getCompanyId() {
 		return companyId;
 	}
@@ -48,27 +29,10 @@ public class CarDealerDto {
 		this.companyId = companyId;
 	}
 
-	public List<BookingDetails> getBookingDetails() {
-		return bookingDetails;
-	}
-
-	public void setBookingDetails(List<BookingDetails> bookingDetails) {
-		this.bookingDetails = bookingDetails;
-	}
-
-	public List<IncentiveDetails> getIncentiveDetails() {
-		return incentiveDetails;
-	}
-
-	public void setIncentiveDetails(List<IncentiveDetails> incentiveDetails) {
-		this.incentiveDetails = incentiveDetails;
-	}
-
 	@Override
 	public String toString() {
-		return "CarDealerDto [dealerName=" + dealerName + ", dealerBranch=" + dealerBranch + ", customers=" + customers
-				+ ", companyId=" + companyId + ", bookingDetails=" + bookingDetails + ", incentiveDetails="
-				+ incentiveDetails + "]";
+		return "CarDealerDto [dealerName=" + dealerName + ", dealerBranch=" + dealerBranch + ", companyId=" + companyId
+				+ "]";
 	}
 
 }

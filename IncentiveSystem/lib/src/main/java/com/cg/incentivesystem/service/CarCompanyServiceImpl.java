@@ -7,8 +7,15 @@ import org.springframework.stereotype.Service;
 
 import com.cg.incentivesystem.dto.CarCompanyDto;
 import com.cg.incentivesystem.entites.CarCompany;
+<<<<<<< Updated upstream
 import com.cg.incentivesystem.entites.IncentiveDetails;
 import com.cg.incentivesystem.exception.CarCompanyNotFoundException;
+=======
+import com.cg.incentivesystem.entites.CarDealer;
+import com.cg.incentivesystem.exception.CarCompanyAlreadyExistException;
+import com.cg.incentivesystem.exception.CarCompanyNotFoundException;
+import com.cg.incentivesystem.exception.DealerNotFoundException;
+>>>>>>> Stashed changes
 import com.cg.incentivesystem.repository.CarCompanyRepository;
 import com.cg.incentivesystem.repository.IncentiveDetailsRepository;
 
@@ -39,3 +46,15 @@ public class CarCompanyServiceImpl implements CarCompanyService {
 	}	
 	
 
+<<<<<<< Updated upstream
+=======
+	@Override
+	public Optional<CarCompany> getCompanyById(int companyId) throws CarCompanyNotFoundException {
+		Optional<CarCompany> carCom = carComrepo.findById(companyId);
+		if (carCom.isEmpty())
+			throw new CarCompanyNotFoundException();
+		return carCom;
+	}
+
+}
+>>>>>>> Stashed changes
