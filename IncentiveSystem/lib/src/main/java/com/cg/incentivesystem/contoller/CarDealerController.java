@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.incentivesystem.dto.CarDetailsDto;
+import com.cg.incentivesystem.dto.CustomerDetailsDto;
 import com.cg.incentivesystem.entites.CarDealer;
 import com.cg.incentivesystem.entites.CarDetails;
 import com.cg.incentivesystem.entites.CustomerDetails;
@@ -21,31 +23,24 @@ import com.cg.incentivesystem.service.IncentiveDetailsServiceImpl;
 @RequestMapping("/deal")
 public class CarDealerController {
 	@Autowired
-	CarDealerServiceImpl dealerService;
-//	@Autowired
-//	CarDetailsServiceImpl carService;
-//	@Autowired
-//	CustomerDetailsServiceImpl custService;
+	CarDetailsServiceImpl carservice;
+	@Autowired
+	CustomerDetailsServiceImpl custService;
 //	@Autowired
 //	IncentiveDetailsServiceImpl inceService;
 	
 	@PostMapping
-	public ResponseEntity<String> addDealer(@RequestBody CarDealer deal) {
-		dealerService.addCarDealer(deal);
+	public ResponseEntity<String> addCarDetails(@RequestBody CarDetailsDto details) {
+		int chasissno=carservice.addCarDetails(details);
 		return new ResponseEntity<String>("inserted", HttpStatus.OK);	
 	}
 	
 //	@PostMapping
-//	public ResponseEntity<String> addCarDetails(@RequestBody CarDetails carDetails) {
-//		carService.addCarDetails(carDetails);
+//	public ResponseEntity<String> addCustomerDetails(@RequestBody CustomerDetailsDto custdto) {
+//		custService.addCustomer(custdto);
 //		return new ResponseEntity<String>("inserted", HttpStatus.OK);	
 //	}
 //	
-//	@PostMapping
-//	public ResponseEntity<String> addCustomerDetails(@RequestBody CustomerDetails custDetails) {
-//		custService.addCustomer(custDetails);
-//		return new ResponseEntity<String>("inserted", HttpStatus.OK);	
-//	}
 //	
 //	
 //	@PostMapping

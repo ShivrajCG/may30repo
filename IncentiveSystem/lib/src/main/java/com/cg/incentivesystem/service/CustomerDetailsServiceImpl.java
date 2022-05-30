@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.incentivesystem.dto.CustomerDetailsDto;
+import com.cg.incentivesystem.entites.CarDealer;
 import com.cg.incentivesystem.entites.CustomerDetails;
 import com.cg.incentivesystem.exception.CustomerAlreadyExistException;
 import com.cg.incentivesystem.exception.CustomerNotFoundException;
@@ -16,14 +18,9 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService{
 
 	@Autowired
 	CustomerDetailsRepository custrepo;
-
 	@Override
-	public void addCustomer(CustomerDetails cust) {
-		Optional<CustomerDetails> customerdetails = custrepo.findById(cust.getCustomerId());
-		System.out.println(customerdetails);
-		if (!customerdetails.isEmpty())
-			throw new CustomerAlreadyExistException();
-		custrepo.save(cust);
+	public int addCustomer(CustomerDetailsDto custdto) {
+		return 1;
 	}
 
 	@Override

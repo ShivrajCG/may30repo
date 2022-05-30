@@ -5,7 +5,7 @@ public class CarDetailsDto {
 	private String specification;
 	private int carPrice;
 	private String carModel;
-	private String companyName;
+	private int companyId;
 
 	public String getSpecification() {
 		return specification;
@@ -31,18 +31,18 @@ public class CarDetailsDto {
 		this.carModel = carModel;
 	}
 
-	public String getCompanyName() {
-		return companyName;
+	public int getCompanyId() {
+		return companyId;
 	}
 
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
+	public void setCompanyId(int companyName) {
+		this.companyId = companyName;
 	}
 
 	@Override
 	public String toString() {
 		return "CarDetailsDto [specification=" + specification + ", carPrice=" + carPrice + ", carModel=" + carModel
-				+ ", companyName=" + companyName + "]";
+				+ ", companyName=" + companyId + "]";
 	}
 
 }

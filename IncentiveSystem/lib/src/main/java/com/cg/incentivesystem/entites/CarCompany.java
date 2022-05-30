@@ -18,6 +18,12 @@ public class CarCompany {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int companyId;
+	@Column(name="companyname",length = 30)
+	private String companyName;
+	@OneToMany(mappedBy = "carCom", cascade = CascadeType.ALL)
+	private List<CarDetails> carDetails;
+	@OneToMany(mappedBy = "carComDealer", cascade = CascadeType.ALL)
+	private List<CarDealer> carDealer;
 	public int getCompanyId() {
 		return companyId;
 	}
@@ -30,15 +36,6 @@ public class CarCompany {
 	public void setCarDealer(List<CarDealer> carDealer) {
 		this.carDealer = carDealer;
 	}
-	@Column(name="companyname",length = 30)
-	private String companyName;
-	@OneToMany(mappedBy = "carCom", cascade = CascadeType.ALL)
-	private List<CarDetails> carDetails;
-	@OneToMany(mappedBy = "carComDealer", cascade = CascadeType.ALL)
-	private List<CarDealer> carDealer;
-	
-	
-	
 	
 	public String getCompanyName() {
 		return companyName;

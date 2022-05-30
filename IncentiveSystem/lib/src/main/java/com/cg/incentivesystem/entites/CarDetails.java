@@ -1,5 +1,7 @@
 package com.cg.incentivesystem.entites;
 
+import java.util.Optional;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +27,7 @@ public class CarDetails {
 	@Column(length=30)
 	private String carModel;
 	@ManyToOne
-	@JoinColumn(name = "companyName")
+	@JoinColumn(name = "companyId")
 	private CarCompany carCom;
 	@OneToOne(mappedBy = "carDetails")
 	private BookingDetails bookingDetails;
@@ -66,7 +68,7 @@ public class CarDetails {
 	public CarCompany getCarCom() {
 		return carCom;
 	}
-	public void setCarCom(CarCompany carCom) {
-		this.carCom = carCom;
+	public void setCarCom(CarCompany carcomp) {
+		this.carCom = carcomp;
 	} 
 }

@@ -21,6 +21,14 @@ public class IncentiveDetails {
 	private int incentiveId;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "bookingId", unique = true)
+	@ManyToOne
+	@JoinColumn(name = "customerid")
+	private CustomerDetails custdetails;
+	@ManyToOne
+	@JoinColumn(name = "dealerid")
+	private CarDealer dealer;
+	@Column
+	private int amount;
 	private BookingDetails booking;
 
 	public int getIncentiveId() {
@@ -63,12 +71,5 @@ public class IncentiveDetails {
 		this.amount = amount;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "customerid")
-	private CustomerDetails custdetails;
-	@ManyToOne
-	@JoinColumn(name = "dealerid")
-	private CarDealer dealer;
-	@Column
-	private int amount;
+	
 }

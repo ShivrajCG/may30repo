@@ -6,23 +6,35 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.incentivesystem.dto.CarDetailsDto;
+import com.cg.incentivesystem.entites.CarCompany;
 import com.cg.incentivesystem.entites.CarDetails;
+import com.cg.incentivesystem.exception.CarCompanyNotFoundException;
 import com.cg.incentivesystem.exception.CarDetailsAlreadyExistException;
 import com.cg.incentivesystem.exception.CarDetailsNotFoundException;
+import com.cg.incentivesystem.repository.CarCompanyRepository;
 import com.cg.incentivesystem.repository.CarDetailsRepository;
 
 @Service
 public class CarDetailsServiceImpl implements CarDetailsService{
 	@Autowired
 	CarDetailsRepository cardetrepo;
+	@Autowired
+	CarCompanyRepository carcomrepo;
 	@Override
-	public void addCarDetails(CarDetails det) throws CarDetailsAlreadyExistException {
-		Optional<CarDetails> cardetails = cardetrepo.findById(det.getChassisNumber());
-		System.out.println(cardetails);
-		if (!cardetails.isEmpty())
-			throw new CarDetailsAlreadyExistException();
-		cardetrepo.save(det);
-
+	public int addCarDetails(CarDetailsDto detdto) throws CarDetailsAlreadyExistException {
+		CarCompany carcomp= carcomrepo.getById(detdto.getCompanyId());
+		if(carcomp==null)
+			throw new CarCompanyNotFoundException();
+		
+		CarDetails carDet = new CarDetails();
+		carDet.setCarModel(detdto.getCarModel());
+		carDet.setCarPrice(detdto.getCarPrice());
+		carDet.setSpecification(detdto.getSpecification());
+		carDet.setCarCom(carcomp);
+		cardetrepo.save(carDet);
+		System.out.println(detdto);
+		return carDet.getChassisNumber();
 	}
 
 	@Override
