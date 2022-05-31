@@ -2,20 +2,23 @@ package com.cg.incentivesystem.service;
 
 
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.incentivesystem.dto.CarCompanyDto;
 import com.cg.incentivesystem.entites.CarCompany;
-<<<<<<< Updated upstream
+
 import com.cg.incentivesystem.entites.IncentiveDetails;
 import com.cg.incentivesystem.exception.CarCompanyNotFoundException;
-=======
+
 import com.cg.incentivesystem.entites.CarDealer;
 import com.cg.incentivesystem.exception.CarCompanyAlreadyExistException;
 import com.cg.incentivesystem.exception.CarCompanyNotFoundException;
 import com.cg.incentivesystem.exception.DealerNotFoundException;
->>>>>>> Stashed changes
+
 import com.cg.incentivesystem.repository.CarCompanyRepository;
 import com.cg.incentivesystem.repository.IncentiveDetailsRepository;
 
@@ -23,22 +26,37 @@ import com.cg.incentivesystem.repository.IncentiveDetailsRepository;
 public class CarCompanyServiceImpl implements CarCompanyService {
 	@Autowired
 	CarCompanyRepository carcomrepo;
-	@Autowired
-	IncentiveDetailsRepository incerepo;
 	
 	@Override
-	public void addCarCompany(CarCompanyDto comp) {
-		IncentiveDetails details =incerepo.getById(comp.getCompanyId());
-		if (details == null)
-			throw new CarCompanyNotFoundException();
+	public int addCarCompany(CarCompanyDto comp) throws CarCompanyAlreadyExistException {
+		CarCompany carcomp = carcomrepo.getByName(comp.getCompanyName());
+		if(carcomp==null)
+		{
+			CarCompany company = new CarCompany();
+			company.setCompanyName(comp.getCompanyName());
+			carcomrepo.save(company);
+			System.out.println(comp);
+			return company.getCompanyId();
+		}
+		else
+			throw new CarCompanyAlreadyExistException();
 		
-		CarCompany company = new CarCompany();
-		company.setCompanyId(comp.getCompanyId());
-		company.setCompanyName(comp.getCompanyName());
-		
-		System.out.println(comp);
 			
 	}
+
+	@Override
+	public List<CarCompany> viewCarCompany() {
+		return carcomrepo.findAll();
+	}
+
+	@Override
+	public Optional<CarCompany> getCompanyById(int companyId) throws CarCompanyNotFoundException {
+		Optional<CarCompany> carcomp = carcomrepo.findById(companyId);
+		if(carcomp.isEmpty())
+			throw new CarCompanyNotFoundException();
+		return carcomp;
+	}
+
 
 
 	
@@ -46,15 +64,4 @@ public class CarCompanyServiceImpl implements CarCompanyService {
 	}	
 	
 
-<<<<<<< Updated upstream
-=======
-	@Override
-	public Optional<CarCompany> getCompanyById(int companyId) throws CarCompanyNotFoundException {
-		Optional<CarCompany> carCom = carComrepo.findById(companyId);
-		if (carCom.isEmpty())
-			throw new CarCompanyNotFoundException();
-		return carCom;
-	}
 
-}
->>>>>>> Stashed changes
