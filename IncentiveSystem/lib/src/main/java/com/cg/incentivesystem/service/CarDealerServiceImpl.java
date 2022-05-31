@@ -2,6 +2,9 @@ package com.cg.incentivesystem.service;
 
 
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,13 +14,10 @@ import com.cg.incentivesystem.entites.CarDealer;
 import com.cg.incentivesystem.entites.CarDetails;
 import com.cg.incentivesystem.entites.CustomerDetails;
 import com.cg.incentivesystem.exception.CarCompanyNotFoundException;
-<<<<<<< Updated upstream
 import com.cg.incentivesystem.exception.CarDetailsNotFoundException;
 import com.cg.incentivesystem.exception.CustomerNotFoundException;
 import com.cg.incentivesystem.exception.DealerAlreadyExistException;
 import com.cg.incentivesystem.exception.DealerNotFoundException;
-=======
->>>>>>> Stashed changes
 import com.cg.incentivesystem.repository.CarCompanyRepository;
 import com.cg.incentivesystem.repository.CarDealerRepository;
 import com.cg.incentivesystem.repository.CarDetailsRepository;

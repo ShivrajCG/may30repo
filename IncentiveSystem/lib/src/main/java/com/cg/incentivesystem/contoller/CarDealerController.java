@@ -13,17 +13,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.incentivesystem.dto.BookingDetailsDto;
 import com.cg.incentivesystem.dto.CarDealerDto;
 import com.cg.incentivesystem.dto.CarDetailsDto;
 import com.cg.incentivesystem.dto.CustomerDetailsDto;
-<<<<<<< Updated upstream
+import com.cg.incentivesystem.dto.IncentiveDetailsDto;
 import com.cg.incentivesystem.entites.CarDealer;
 import com.cg.incentivesystem.entites.CarDetails;
 import com.cg.incentivesystem.entites.CustomerDetails;
-=======
-import com.cg.incentivesystem.dto.IncentiveDetailsDto;
 import com.cg.incentivesystem.service.BookingDetailsServiceImpl;
->>>>>>> Stashed changes
 import com.cg.incentivesystem.service.CarDealerServiceImpl;
 import com.cg.incentivesystem.service.CarDetailsServiceImpl;
 import com.cg.incentivesystem.service.CustomerDetailsServiceImpl;
@@ -42,6 +40,8 @@ public class CarDealerController {
 	CarDealerServiceImpl dealService;
 	@Autowired
 	CarDetailsServiceImpl carService;
+	@Autowired
+	BookingDetailsServiceImpl bookservice;
 
 	@PostMapping("/addCarDetails")
 	public ResponseEntity<String> addCarDetails(@RequestBody CarDetailsDto details) {
@@ -101,5 +101,15 @@ public class CarDealerController {
 
 		Optional<CustomerDetails> cust = custService.getCustById(customerId);
 		return new ResponseEntity<Optional<CustomerDetails>>(cust, HttpStatus.OK);
+	}
+	@PostMapping("/addIncentiveDetails")
+	public ResponseEntity<String> addIncentive(@RequestBody IncentiveDetailsDto incdetails){
+		int incentiveId = inceService.addIncentiveDetails(incdetails);
+		return new ResponseEntity<String>("incentive added "+ incentiveId, HttpStatus.OK);
+	}
+	@PostMapping("/addBookingDetails")
+	public ResponseEntity<String> addBookingDetails(@RequestBody BookingDetailsDto bookdetails){
+		int bookingID = bookservice.addBookingDetails(bookdetails);
+		return new ResponseEntity<String>("carbooked added "+ bookingID, HttpStatus.OK);
 	}
 }

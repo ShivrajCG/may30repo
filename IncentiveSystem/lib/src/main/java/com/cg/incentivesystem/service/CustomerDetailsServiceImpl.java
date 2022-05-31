@@ -1,12 +1,16 @@
 package com.cg.incentivesystem.service;
 
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.incentivesystem.dto.CustomerDetailsDto;
 import com.cg.incentivesystem.entites.CarDealer;
 import com.cg.incentivesystem.entites.CustomerDetails;
+import com.cg.incentivesystem.exception.CustomerNotFoundException;
 import com.cg.incentivesystem.exception.DealerNotFoundException;
 import com.cg.incentivesystem.repository.CarDealerRepository;
 import com.cg.incentivesystem.repository.CustomerDetailsRepository;

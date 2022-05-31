@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-<<<<<<< Updated upstream
 
-=======
+
+
 import com.cg.incentivesystem.entites.CarCompany;
->>>>>>> Stashed changes
+
 import com.cg.incentivesystem.entites.CarDetails;
 
 @Repository

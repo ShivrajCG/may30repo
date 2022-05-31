@@ -1,9 +1,5 @@
 package com.cg.incentivesystem.entites;
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -10,16 +10,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-<<<<<<< Updated upstream
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-=======
-
 
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
->>>>>>> Stashed changes
 import javax.persistence.Table;
 
 @Entity

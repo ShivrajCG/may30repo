@@ -13,11 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.incentivesystem.dto.CarCompanyDto;
-<<<<<<< Updated upstream
-import com.cg.incentivesystem.entites.CarDetails;
-import com.cg.incentivesystem.entites.IncentiveDetails;
-=======
->>>>>>> Stashed changes
 import com.cg.incentivesystem.service.CarCompanyServiceImpl;
 import com.cg.incentivesystem.service.CarDealerServiceImpl;
 import com.cg.incentivesystem.service.CarDetailsServiceImpl;
@@ -45,7 +40,7 @@ public class CarCompanyController {
 		List<Integer> details = carService.viewChassisnoByCompanyName(companyName);
 		return new ResponseEntity<List<Integer>>(details,HttpStatus.OK);
 	}
-	@GetMapping("/viewIncentiveDetails/{dealerId}")
+	@GetMapping("/viewIncentiveId/{dealerId}")
 	public ResponseEntity<List<Integer>> viewIncentives(@PathVariable int dealerId){
 		List<Integer> incentive = incService.viewIncentiveDetails(dealerId);
 		return new ResponseEntity<List<Integer>>(incentive,HttpStatus.OK);

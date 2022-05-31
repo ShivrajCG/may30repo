@@ -10,19 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.cg.incentivesystem.dto.CarCompanyDto;
 import com.cg.incentivesystem.entites.CarCompany;
-<<<<<<< Updated upstream
+
 import com.cg.incentivesystem.exception.CarCompanyAlreadyExistException;
 import com.cg.incentivesystem.exception.CarCompanyNotFoundException;
 import com.cg.incentivesystem.repository.CarCompanyRepository;
-=======
-import com.cg.incentivesystem.exception.CarCompanyNotFoundException;
 
-import com.cg.incentivesystem.exception.CarCompanyAlreadyExistException;
-
-
-import com.cg.incentivesystem.repository.CarCompanyRepository;
-
->>>>>>> Stashed changes
 
 @Service
 public class CarCompanyServiceImpl implements CarCompanyService {
