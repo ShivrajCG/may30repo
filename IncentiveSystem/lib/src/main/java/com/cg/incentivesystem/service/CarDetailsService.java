@@ -5,11 +5,12 @@ import java.util.Optional;
 
 import com.cg.incentivesystem.dto.CarDetailsDto;
 import com.cg.incentivesystem.entites.CarDetails;
+import com.cg.incentivesystem.exception.CarCompanyNotFoundException;
 import com.cg.incentivesystem.exception.CarDetailsAlreadyExistException;
 import com.cg.incentivesystem.exception.CarDetailsNotFoundException;
 
 public interface CarDetailsService {
-	int addCarDetails(CarDetailsDto det) throws CarDetailsAlreadyExistException;
+	int addCarDetails(CarDetailsDto det) throws CarCompanyNotFoundException;
 
 	List<CarDetails> viewAllCarDetails();
 
@@ -18,4 +19,6 @@ public interface CarDetailsService {
 	void updateCarDetails(CarDetails det);
 
 	void deleteCarDetails(int carChassisNo);
+	
+	CarDetailsDto viewCarByCompanyName(String compName) throws CarCompanyNotFoundException;
 }

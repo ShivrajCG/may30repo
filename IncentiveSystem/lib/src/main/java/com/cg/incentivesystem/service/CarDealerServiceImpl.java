@@ -23,11 +23,11 @@ public class CarDealerServiceImpl implements CarDealerService {
 	CarCompanyRepository carComrepo;
 
 	@Override
-	public int addCarDealer(CarDealerDto dealdto) throws DealerAlreadyExistException {
+	public int addCarDealer(CarDealerDto dealdto)  {
 		CarCompany carcom = carComrepo.getById(dealdto.getCompanyId());
 		if (carcom == null)
 			throw new CarCompanyNotFoundException();
-
+		else{
 		CarDealer deal = new CarDealer();
 		deal.setDealerName(dealdto.getDealerName());
 		deal.setDealerBranch(dealdto.getDealerBranch());
@@ -36,34 +36,34 @@ public class CarDealerServiceImpl implements CarDealerService {
 		dealrepo.save(deal);
 		System.out.println(dealdto);
 		return deal.getDealerId();
-
+		}
 	}
 
-	@Override
-	public List<CarDealer> viewAllDealers() {
-		return dealrepo.findAll();
-	}
-
-	@Override
-	public Optional<CarDealer> getDealerById(int dealerID) throws DealerNotFoundException {
-		Optional<CarDealer> deal = dealrepo.findById(dealerID);
-		if (deal.isEmpty())
-			throw new DealerNotFoundException();
-		return deal;
-	}
-
-	@Override
-	public void updateDealer(CarDealer deal) {
-		dealrepo.save(deal);
-
-	}
-
-	@Override
-	public void deleteDealer(int dealerID) throws DealerNotFoundException {
-		Optional<CarDealer> dealer = dealrepo.findById(dealerID);
-		if (dealer.isEmpty())
-			throw new DealerNotFoundException();
-		dealrepo.deleteById(dealerID);
-	}
+//	@Override
+//	public List<CarDealer> viewAllDealers() {
+//		return dealrepo.findAll();
+//	}
+//
+//	@Override
+//	public Optional<CarDealer> getDealerById(int dealerID) throws DealerNotFoundException {
+//		Optional<CarDealer> deal = dealrepo.findById(dealerID);
+//		if (deal.isEmpty())
+//			throw new DealerNotFoundException();
+//		return deal;
+//	}
+//
+//	@Override
+//	public void updateDealer(CarDealer deal) {
+//		dealrepo.save(deal);
+//
+//	}
+//
+//	@Override
+//	public void deleteDealer(int dealerID) throws DealerNotFoundException {
+//		Optional<CarDealer> dealer = dealrepo.findById(dealerID);
+//		if (dealer.isEmpty())
+//			throw new DealerNotFoundException();
+//		dealrepo.deleteById(dealerID);
+//	}
 
 }

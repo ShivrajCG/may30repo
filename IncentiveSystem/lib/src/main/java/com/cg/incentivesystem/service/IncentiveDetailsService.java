@@ -5,5 +5,5 @@ import com.cg.incentivesystem.entites.IncentiveDetails;
 import com.cg.incentivesystem.exception.IncentiveForThisBookingIDAlreadyExistException;
 
 public interface IncentiveDetailsService {
-	void addIncentiveDetails(IncentiveDetailsDto incdetdto) throws IncentiveForThisBookingIDAlreadyExistException;  
+	int addIncentiveDetails(IncentiveDetailsDto incdetdto) throws IncentiveForThisBookingIDAlreadyExistException;  
 }

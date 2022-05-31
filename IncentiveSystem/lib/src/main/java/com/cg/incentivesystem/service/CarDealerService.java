@@ -5,17 +5,18 @@ import java.util.Optional;
 
 import com.cg.incentivesystem.dto.CarDealerDto;
 import com.cg.incentivesystem.entites.CarDealer;
+import com.cg.incentivesystem.exception.CarCompanyNotFoundException;
 import com.cg.incentivesystem.exception.DealerAlreadyExistException;
 import com.cg.incentivesystem.exception.DealerNotFoundException;
 
 public interface CarDealerService {
-	int addCarDealer(CarDealerDto dealdto) throws DealerAlreadyExistException;
+	int addCarDealer(CarDealerDto dealdto) throws CarCompanyNotFoundException;
 
-	List<CarDealer> viewAllDealers();
-
-	Optional<CarDealer> getDealerById(int dealerID) throws DealerNotFoundException;
-
-	void updateDealer(CarDealer deal);
-
-	void deleteDealer(int dealerID) throws DealerNotFoundException;
+//	List<CarDealer> viewAllDealers();
+//
+//	Optional<CarDealer> getDealerById(int dealerID) throws DealerNotFoundException;
+//
+//	void updateDealer(CarDealer deal);
+//
+//	void deleteDealer(int dealerID) throws DealerNotFoundException;
 }

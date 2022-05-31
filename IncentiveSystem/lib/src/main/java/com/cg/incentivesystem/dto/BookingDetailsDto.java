@@ -6,33 +6,35 @@ import com.cg.incentivesystem.entites.CarDealer;
 import com.cg.incentivesystem.entites.CarDetails;
 
 public class BookingDetailsDto {
-	private CarDealer cardealer;
-	private CarDetails carDetails;
-	private Date bookingDate;
+	private int chassisno;
+	private int cardealerId;
+	private int incentiveId;
 	private int customerId;
 
-	public CarDealer getCardealer() {
-		return cardealer;
+	
+
+	public int getChassisno() {
+		return chassisno;
 	}
 
-	public void setCardealer(CarDealer cardealer) {
-		this.cardealer = cardealer;
+	public void setChassisno(int chassisno) {
+		this.chassisno = chassisno;
 	}
 
-	public CarDetails getCarDetails() {
-		return carDetails;
+	public int getCardealerId() {
+		return cardealerId;
 	}
 
-	public void setCarDetails(CarDetails carDetails) {
-		this.carDetails = carDetails;
+	public void setCardealerId(int cardealerId) {
+		this.cardealerId = cardealerId;
 	}
 
-	public Date getBookingDate() {
-		return bookingDate;
+	public int getIncentiveId() {
+		return incentiveId;
 	}
 
-	public void setBookingDate(Date bookingDate) {
-		this.bookingDate = bookingDate;
+	public void setIncentiveId(int incentiveId) {
+		this.incentiveId = incentiveId;
 	}
 
 	public int getCustomerId() {
@@ -43,10 +45,5 @@ public class BookingDetailsDto {
 		this.customerId = customerId;
 	}
 
-	@Override
-	public String toString() {
-		return "BookingDetailsDto [cardealer=" + cardealer + ", carDetails=" + carDetails + ", bookingDate="
-				+ bookingDate + ", customerId=" + customerId + "]";
-	}
-
+	
 }

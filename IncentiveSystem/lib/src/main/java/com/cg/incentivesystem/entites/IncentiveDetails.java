@@ -16,8 +16,6 @@ import javax.persistence.Table;
 @Table(name = "incentivedetails")
 public class IncentiveDetails {
 	@Id
-	@SequenceGenerator(name = "inc_id", initialValue = 1001000, sequenceName = "inc_id", allocationSize = 2)
-	@GeneratedValue(generator = "inc_id", strategy = GenerationType.SEQUENCE)
 	private int incentiveId;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "bookingId", unique = true)

@@ -38,23 +38,6 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 		return cust.getCustomerId();
 	}
 
-	@Override
-	public List<CustomerDetails> viewAllCusts() {
-		return custrepo.findAll();
-	}
-
-	@Override
-	public Optional<CustomerDetails> getCustByID(int customerID) {
-		Optional<CustomerDetails> cust = custrepo.findById(customerID);
-		if (cust.isEmpty())
-			throw new CustomerNotFoundException();
-		return cust;
-	}
-
-	@Override
-	public void updateCustomer(CustomerDetails cust) {
-		custrepo.save(cust);
-
-	}
+	
 
 }

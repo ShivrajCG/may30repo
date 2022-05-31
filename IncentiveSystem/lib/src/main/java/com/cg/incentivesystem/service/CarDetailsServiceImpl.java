@@ -22,7 +22,7 @@ public class CarDetailsServiceImpl implements CarDetailsService{
 	@Autowired
 	CarCompanyRepository carcomrepo;
 	@Override
-	public int addCarDetails(CarDetailsDto detdto) throws CarDetailsAlreadyExistException {
+	public int addCarDetails(CarDetailsDto detdto) {
 		CarCompany carcomp= carcomrepo.getById(detdto.getCompanyId());
 		if(carcomp==null)
 			throw new CarCompanyNotFoundException();
@@ -43,7 +43,7 @@ public class CarDetailsServiceImpl implements CarDetailsService{
 	}
 
 	@Override
-	public Optional<CarDetails> getCarById(int carChassisNo) throws CarDetailsNotFoundException {
+	public Optional<CarDetails> getCarById(int carChassisNo)  {
 		Optional<CarDetails> det = cardetrepo.findById(carChassisNo);
 		if(det.isEmpty())
 			throw new CarDetailsNotFoundException();
@@ -61,4 +61,22 @@ public class CarDetailsServiceImpl implements CarDetailsService{
 		cardetrepo.deleteById(carChassisNo);
 
 }
+
+	@Override
+	public CarDetailsDto viewCarByCompanyName(String compName) {
+		CarCompany comp = carcomrepo.getIdByName(compName);	
+		CarDetails details = cardetrepo.getCarDetailsByCompanyName(comp.getCompanyId());
+		if(details==null)
+			throw new CarCompanyNotFoundException();
+		else
+		{
+			CarDetailsDto dts = new CarDetailsDto();
+			dts.setCarModel(details.getCarModel());
+			dts.setCarPrice(details.getCarPrice());
+			dts.setCompanyId(comp.getCompanyId());
+			dts.setSpecification(details.getSpecification());
+			return dts;
+		}
+		
+	}
 }

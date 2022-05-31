@@ -6,17 +6,19 @@ import com.cg.incentivesystem.entites.CustomerDetails;
 
 public class IncentiveDetailsDto {
 
-	private BookingDetails booking;
+	private int bookingId;
 	private int customerId;
 	private int dealerId;
 	private int amount;
 
-	public BookingDetails getBooking() {
-		return booking;
+
+
+	public int getBookingId() {
+		return bookingId;
 	}
 
-	public void setBooking(BookingDetails booking) {
-		this.booking = booking;
+	public void setBookingId(int bookingId) {
+		this.bookingId = bookingId;
 	}
 
 	public int getCustomerId() {
@@ -45,8 +47,11 @@ public class IncentiveDetailsDto {
 
 	@Override
 	public String toString() {
-		return "IncentiveDetailsDto [booking=" + booking + ", customerId=" + customerId + ", dealerId=" + dealerId
-				+ ", amount=" + amount + "]";
+		return "IncentiveDetailsDto [bookingId=" + bookingId + ", customerId=" + customerId + ", dealerId=" + dealerId
+				+ ", amount=" + amount + ", getBookingId()=" + getBookingId() + ", getCustomerId()=" + getCustomerId()
+				+ ", getDealerId()=" + getDealerId() + ", getAmount()=" + getAmount() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
+	
 }
