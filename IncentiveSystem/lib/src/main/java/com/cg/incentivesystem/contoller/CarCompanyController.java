@@ -13,10 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.incentivesystem.dto.CarCompanyDto;
-import com.cg.incentivesystem.dto.CarDealerDto;
-import com.cg.incentivesystem.dto.CarDetailsDto;
-import com.cg.incentivesystem.dto.IncentiveDetailsDto;
-import com.cg.incentivesystem.entites.CarCompany;
 import com.cg.incentivesystem.entites.CarDetails;
 import com.cg.incentivesystem.entites.IncentiveDetails;
 import com.cg.incentivesystem.service.CarCompanyServiceImpl;

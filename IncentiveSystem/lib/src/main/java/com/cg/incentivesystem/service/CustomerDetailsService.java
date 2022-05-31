@@ -10,6 +10,9 @@ import com.cg.incentivesystem.exception.CustomerNotFoundException;
 
 public interface CustomerDetailsService {
 	int addCustomer(CustomerDetailsDto custdto) throws CustomerAlreadyExistException;
+	
+	List<CustomerDetails> viewAllCusts();
 
+	Optional<CustomerDetails> getCustById(int customerId) throws CustomerNotFoundException;
 	
 }

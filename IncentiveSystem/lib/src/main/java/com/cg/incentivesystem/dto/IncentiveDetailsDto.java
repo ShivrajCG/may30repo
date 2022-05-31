@@ -1,9 +1,5 @@
 package com.cg.incentivesystem.dto;
 
-import com.cg.incentivesystem.entites.BookingDetails;
-import com.cg.incentivesystem.entites.CarDealer;
-import com.cg.incentivesystem.entites.CustomerDetails;
-
 public class IncentiveDetailsDto {
 
 	private int bookingId;

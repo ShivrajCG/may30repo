@@ -38,6 +38,18 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 		return cust.getCustomerId();
 	}
 
-	
+	@Override
+	public List<CustomerDetails> viewAllCusts() {
+		return custrepo.findAll();
+	}
 
+	@Override
+	public Optional<CustomerDetails> getCustById(int customerId) throws DealerNotFoundException {
+		Optional<CustomerDetails> cust = custrepo.findById(customerId);
+		if(cust.isEmpty())
+			throw new CustomerNotFoundException();
+		return cust;	}
+
+	
+	
 }

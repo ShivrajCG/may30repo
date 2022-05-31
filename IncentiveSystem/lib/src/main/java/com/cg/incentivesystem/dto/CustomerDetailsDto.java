@@ -1,9 +1,5 @@
 package com.cg.incentivesystem.dto;
 
-import java.util.Set;
-
-import com.cg.incentivesystem.entites.CarDealer;
-
 public class CustomerDetailsDto {
 
 	private String customerName;

@@ -1,7 +1,5 @@
 package com.cg.incentivesystem.entites;
 
-import java.util.Optional;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

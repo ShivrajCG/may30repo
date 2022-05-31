@@ -1,10 +1,5 @@
 package com.cg.incentivesystem.dto;
 
-import java.util.Date;
-
-import com.cg.incentivesystem.entites.CarDealer;
-import com.cg.incentivesystem.entites.CarDetails;
-
 public class BookingDetailsDto {
 	private int chassisno;
 	private int cardealerId;

@@ -10,7 +10,6 @@ import com.cg.incentivesystem.dto.CarDetailsDto;
 import com.cg.incentivesystem.entites.CarCompany;
 import com.cg.incentivesystem.entites.CarDetails;
 import com.cg.incentivesystem.exception.CarCompanyNotFoundException;
-import com.cg.incentivesystem.exception.CarDetailsAlreadyExistException;
 import com.cg.incentivesystem.exception.CarDetailsNotFoundException;
 import com.cg.incentivesystem.repository.CarCompanyRepository;
 import com.cg.incentivesystem.repository.CarDetailsRepository;
