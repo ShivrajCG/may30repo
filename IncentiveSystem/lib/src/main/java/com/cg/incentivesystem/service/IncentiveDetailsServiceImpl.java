@@ -2,6 +2,8 @@ package com.cg.incentivesystem.service;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import com.cg.incentivesystem.entites.IncentiveDetails;
 import com.cg.incentivesystem.exception.BookingIdNotFoundException;
 import com.cg.incentivesystem.exception.CustomerNotFoundException;
 import com.cg.incentivesystem.exception.DealerNotFoundException;
+import com.cg.incentivesystem.exception.NotEligibleForIncentiveException;
 import com.cg.incentivesystem.repository.BookingDetailsRepository;
 import com.cg.incentivesystem.repository.CarDealerRepository;
 import com.cg.incentivesystem.repository.CustomerDetailsRepository;
@@ -47,8 +50,26 @@ public class IncentiveDetailsServiceImpl implements IncentiveDetailsService {
 		incdet.setBooking(bookDetails);
 		incdet.setCustdetails(custDetails);
 		incdet.setDealer(dealerDetails);
+		incerepo.save(incdet);
 		return incdet.getIncentiveId();
 		}
 	}
+	@Override
+	public List<IncentiveDetails> viewIncentiveDetails(int dealerId) {
+		List<IncentiveDetails> details = incerepo.viewIncentiveBydealerId(dealerId);
+		return details;
+	}
+	@Override
+	public Double caluculateIncentive(int incentiveId) {
+		int inc = incerepo.getAmountById(incentiveId);
+		if(inc<500000)
+			throw new NotEligibleForIncentiveException();
+		else
+		{
+		double incentive = (double)inc*0.1;
+		return incentive;
+		}
+	}
+	
 	
 }

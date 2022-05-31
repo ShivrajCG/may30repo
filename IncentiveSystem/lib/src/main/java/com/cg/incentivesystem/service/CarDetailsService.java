@@ -20,5 +20,5 @@ public interface CarDetailsService {
 
 	void deleteCarDetails(int carChassisNo);
 	
-	CarDetailsDto viewCarByCompanyName(String compName) throws CarCompanyNotFoundException;
+	List<CarDetails> viewCarByCompanyName(String compName) throws CarCompanyNotFoundException;
 }

@@ -16,6 +16,7 @@ import javax.persistence.Table;
 @Table(name = "incentivedetails")
 public class IncentiveDetails {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int incentiveId;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "bookingId", unique = true)

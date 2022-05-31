@@ -8,7 +8,6 @@ import com.cg.incentivesystem.entites.CarDetails;
 public class BookingDetailsDto {
 	private int chassisno;
 	private int cardealerId;
-	private int incentiveId;
 	private int customerId;
 
 	
@@ -27,14 +26,6 @@ public class BookingDetailsDto {
 
 	public void setCardealerId(int cardealerId) {
 		this.cardealerId = cardealerId;
-	}
-
-	public int getIncentiveId() {
-		return incentiveId;
-	}
-
-	public void setIncentiveId(int incentiveId) {
-		this.incentiveId = incentiveId;
 	}
 
 	public int getCustomerId() {

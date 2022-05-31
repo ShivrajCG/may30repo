@@ -48,5 +48,9 @@ public class IncentiveSystemExceptionHandler {
 	public ResponseEntity<Object> exception(IncentiveForThisBookingIDAlreadyExistException exception){
 		return new ResponseEntity<Object>("IncentiveForThisBookingIDAlreadyExists....", HttpStatus.NOT_FOUND);
 	}
+	@ExceptionHandler(value = NotEligibleForIncentiveException.class)
+	public ResponseEntity<Object> exception(NotEligibleForIncentiveException exception){
+		return new ResponseEntity<Object>("NotEligibleForIncentives....", HttpStatus.NOT_FOUND);
+	}
 
 }

@@ -63,19 +63,16 @@ public class CarDetailsServiceImpl implements CarDetailsService{
 }
 
 	@Override
-	public CarDetailsDto viewCarByCompanyName(String compName) {
+	public List<CarDetails> viewCarByCompanyName(String compName) {
 		CarCompany comp = carcomrepo.getIdByName(compName);	
-		CarDetails details = cardetrepo.getCarDetailsByCompanyName(comp.getCompanyId());
+		List<CarDetails> details = cardetrepo.getCarDetailsByCompanyName(comp.getCompanyId());
 		if(details==null)
 			throw new CarCompanyNotFoundException();
 		else
 		{
-			CarDetailsDto dts = new CarDetailsDto();
-			dts.setCarModel(details.getCarModel());
-			dts.setCarPrice(details.getCarPrice());
-			dts.setCompanyId(comp.getCompanyId());
-			dts.setSpecification(details.getSpecification());
-			return dts;
+//			CarDetailsDto dts = new CarDetailsDto();
+//			dts.
+			return details;
 		}
 		
 	}

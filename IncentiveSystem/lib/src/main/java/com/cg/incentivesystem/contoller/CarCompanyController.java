@@ -15,11 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.incentivesystem.dto.CarCompanyDto;
 import com.cg.incentivesystem.dto.CarDealerDto;
 import com.cg.incentivesystem.dto.CarDetailsDto;
+import com.cg.incentivesystem.dto.IncentiveDetailsDto;
 import com.cg.incentivesystem.entites.CarCompany;
 import com.cg.incentivesystem.entites.CarDetails;
+import com.cg.incentivesystem.entites.IncentiveDetails;
 import com.cg.incentivesystem.service.CarCompanyServiceImpl;
 import com.cg.incentivesystem.service.CarDealerServiceImpl;
 import com.cg.incentivesystem.service.CarDetailsServiceImpl;
+import com.cg.incentivesystem.service.IncentiveDetailsServiceImpl;
+
 
 @RestController
 @RequestMapping("/serv")
@@ -30,6 +34,8 @@ public class CarCompanyController {
 	CarDealerServiceImpl dealerService;
 	@Autowired
 	CarDetailsServiceImpl carService;
+	@Autowired
+	IncentiveDetailsServiceImpl incService;
 	@PostMapping
 	public ResponseEntity<String> registerCarCompany(@RequestBody CarCompanyDto comp) {
 		int companyId=comService.addCarCompany(comp);
@@ -51,10 +57,19 @@ public class CarCompanyController {
 //		return new ResponseEntity<List<CarCompany>>(car, HttpStatus.OK);
 //	}
 	@GetMapping("/viewCarDetails/{companyName}")
-	public ResponseEntity<CarDetailsDto> viewCarsByCompanyName(@PathVariable String companyName){
-		CarDetailsDto details = carService.viewCarByCompanyName(companyName);
-		return new ResponseEntity<CarDetailsDto>(details,HttpStatus.OK);
+	public ResponseEntity<List<CarDetails>> viewCarsByCompanyName(@PathVariable String companyName){
+		List<CarDetails> details = carService.viewCarByCompanyName(companyName);
+		return new ResponseEntity<List<CarDetails>>(details,HttpStatus.OK);
 	}
-//	/@GetMapping("/viewIncentiveDetails/"{})
+	@GetMapping("/viewIncentiveDetails/{dealerId}")
+	public ResponseEntity<List<IncentiveDetails>> viewIncentives(@PathVariable int dealerId){
+		List<IncentiveDetails> incentive = incService.viewIncentiveDetails(dealerId);
+		return new ResponseEntity<List<IncentiveDetails>>(incentive,HttpStatus.OK);
+	}
+	@PostMapping("/calculateIncentiveAmount/{incentiveId}")
+	public ResponseEntity<String> IncentiveById(@PathVariable int incentiveId) {
+		double amt =incService.caluculateIncentive(incentiveId);
+		return new ResponseEntity<String>("IncentiveAmount "+amt, HttpStatus.OK);
+	}
 }
 
