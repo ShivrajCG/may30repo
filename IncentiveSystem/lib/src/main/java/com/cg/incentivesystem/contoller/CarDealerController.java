@@ -16,9 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.incentivesystem.dto.CarDealerDto;
 import com.cg.incentivesystem.dto.CarDetailsDto;
 import com.cg.incentivesystem.dto.CustomerDetailsDto;
+<<<<<<< Updated upstream
 import com.cg.incentivesystem.entites.CarDealer;
 import com.cg.incentivesystem.entites.CarDetails;
 import com.cg.incentivesystem.entites.CustomerDetails;
+=======
+import com.cg.incentivesystem.dto.IncentiveDetailsDto;
+import com.cg.incentivesystem.service.BookingDetailsServiceImpl;
+>>>>>>> Stashed changes
 import com.cg.incentivesystem.service.CarDealerServiceImpl;
 import com.cg.incentivesystem.service.CarDetailsServiceImpl;
 import com.cg.incentivesystem.service.CustomerDetailsServiceImpl;

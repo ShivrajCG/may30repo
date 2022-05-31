@@ -49,5 +49,14 @@ public class CarCompany {
 	public void setCarDetails(List<CarDetails> carDetails) {
 		this.carDetails = carDetails;
 	}
+	@Override
+	public String toString() {
+		return "CarCompany [companyId=" + companyId + ", companyName=" + companyName + ", carDetails=" + carDetails
+				+ ", carDealer=" + carDealer + ", getCompanyId()=" + getCompanyId() + ", getCarDealer()="
+				+ getCarDealer() + ", getCompanyName()=" + getCompanyName() + ", getCarDetails()=" + getCarDetails()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
+	}
+	
 	
 }

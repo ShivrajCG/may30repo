@@ -10,8 +10,16 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+<<<<<<< Updated upstream
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+=======
+
+
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+>>>>>>> Stashed changes
 import javax.persistence.Table;
 
 @Entity
@@ -90,4 +98,18 @@ public class CustomerDetails {
 	public void setDealer(Set<CarDealer> dealer) {
 		this.dealer = dealer;
 	}
+
+	@Override
+	public String toString() {
+		return "CustomerDetails [customerId=" + customerId + ", customerName=" + customerName + ", customerMobileNo="
+				+ customerMobileNo + ", customerMail=" + customerMail + ", dealer=" + dealer + ", bookingDetails="
+				+ bookingDetails + ", incentiveDetails=" + incentiveDetails + ", getBookingDetails()="
+				+ getBookingDetails() + ", getIncentiveDetails()=" + getIncentiveDetails() + ", getCustomerId()="
+				+ getCustomerId() + ", getCustomerName()=" + getCustomerName() + ", getCustomerMobileNo()="
+				+ getCustomerMobileNo() + ", getCustomerMail()=" + getCustomerMail() + ", getDealer()=" + getDealer()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
+	}
+	
+	
 }

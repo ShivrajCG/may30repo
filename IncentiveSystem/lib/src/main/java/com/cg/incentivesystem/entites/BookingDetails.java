@@ -65,4 +65,10 @@ public class BookingDetails {
 	public void setCustdetails(CustomerDetails custdetails) {
 		this.custdetails = custdetails;
 	}
+	@Override
+	public String toString() {
+		return "BookingDetails [bookingId=" + bookingId + ", cardealer=" + cardealer + ", carDetails=" + carDetails
+				+ ", bookingDate=" + bookingDate + ", custdetails=" + custdetails + ", incentive=" + incentive + "]";
+	}
+	
 }

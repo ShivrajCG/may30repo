@@ -6,6 +6,15 @@ public class CarDetailsDto {
 	private int carPrice;
 	private String carModel;
 	private int companyId;
+	private int chassisno;
+
+	public int getChassisno() {
+		return chassisno;
+	}
+
+	public void setChassisno(int chassisno) {
+		this.chassisno = chassisno;
+	}
 
 	public String getSpecification() {
 		return specification;
@@ -42,7 +51,7 @@ public class CarDetailsDto {
 	@Override
 	public String toString() {
 		return "CarDetailsDto [specification=" + specification + ", carPrice=" + carPrice + ", carModel=" + carModel
-				+ ", companyName=" + companyId + "]";
+				+ ", companyId=" + companyId + ", chassisno=" + chassisno + "]";
 	}
 
 }

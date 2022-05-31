@@ -1,5 +1,9 @@
 package com.cg.incentivesystem.entites;
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -68,5 +72,15 @@ public class CarDetails {
 	}
 	public void setCarCom(CarCompany carcomp) {
 		this.carCom = carcomp;
+	}
+	@Override
+	public String toString() {
+		return "CarDetails [chassisNumber=" + chassisNumber + ", specification=" + specification + ", carPrice="
+				+ carPrice + ", carModel=" + carModel + ", carCom=" + carCom + ", bookingDetails=" + bookingDetails
+				+ ", getCarPrice()=" + getCarPrice() + ", getCarModel()=" + getCarModel() + ", getBookingDetails()="
+				+ getBookingDetails() + ", getChassisNumber()=" + getChassisNumber() + ", getSpecification()="
+				+ getSpecification() + ", getCarCom()=" + getCarCom() + ", getClass()=" + getClass() + ", hashCode()="
+				+ hashCode() + ", toString()=" + super.toString() + "]";
 	} 
+	
 }

@@ -1,5 +1,9 @@
 package com.cg.incentivesystem.dto;
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 public class IncentiveDetailsDto {
 
 	private int bookingId;

@@ -1,5 +1,9 @@
 package com.cg.incentivesystem.dto;
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 public class CustomerDetailsDto {
 
 	private String customerName;

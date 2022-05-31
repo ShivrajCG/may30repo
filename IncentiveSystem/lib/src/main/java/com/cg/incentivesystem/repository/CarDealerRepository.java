@@ -7,6 +7,6 @@ import com.cg.incentivesystem.entites.CarDealer;
 
 @Repository
 public interface CarDealerRepository extends JpaRepository<CarDealer, Integer>{
-//	@Query(value = "select deal from dealer deal where deal.dealerID=?1")
+//	@Query(value = "select deal from CarDealer deal where deal.dealerId=?1")
 //	CarDealer getDealByID(int dealerID);
 }

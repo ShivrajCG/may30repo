@@ -1,5 +1,6 @@
 package com.cg.incentivesystem.exception;
 
+import org.postgresql.util.PSQLException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -51,6 +52,10 @@ public class IncentiveSystemExceptionHandler {
 	@ExceptionHandler(value = NotEligibleForIncentiveException.class)
 	public ResponseEntity<Object> exception(NotEligibleForIncentiveException exception){
 		return new ResponseEntity<Object>("NotEligibleForIncentives....", HttpStatus.NOT_FOUND);
+	}
+	@ExceptionHandler(value = PSQLException.class)
+	public ResponseEntity<Object> exception(PSQLException exception){
+		return new ResponseEntity<Object>("ChassisNumberAlreadyBooked....", HttpStatus.NOT_FOUND);
 	}
 
 }
