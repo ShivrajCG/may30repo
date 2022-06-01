@@ -1,5 +1,7 @@
 package com.cg.incentivesystem.service;
 
+
+
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +13,9 @@ import com.cg.incentivesystem.exception.CarDetailsNotFoundException;
 import com.cg.incentivesystem.exception.CustomerNotFoundException;
 import com.cg.incentivesystem.exception.DealerAlreadyExistException;
 import com.cg.incentivesystem.exception.DealerNotFoundException;
+
+import com.cg.incentivesystem.exception.CarCompanyNotFoundException;
+
 
 public interface CarDealerService {
 	int addCarDealer(CarDealerDto dealdto) throws DealerAlreadyExistException;

@@ -1,5 +1,6 @@
 package com.cg.incentivesystem.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,17 +63,15 @@ public class CarDetailsServiceImpl implements CarDetailsService{
 }
 
 	@Override
-	public List<CarDetails> viewCarByCompanyName(String compName) {
-		CarCompany comp = carcomrepo.getIdByName(compName);	
-		List<CarDetails> details = cardetrepo.getCarDetailsByCompanyName(comp.getCompanyId());
-		if(details==null)
+	public List<Integer> viewChassisnoByCompanyName(String compName) {
+		CarCompany comp = carcomrepo.getByName(compName); 
+		List<Integer> chassisno = cardetrepo.getCarDetailsByCompanyName(comp);
+		if(chassisno.isEmpty())
 			throw new CarCompanyNotFoundException();
 		else
 		{
-//			CarDetailsDto dts = new CarDetailsDto();
-//			dts.
-			return details;
+			return chassisno;
 		}
-		
 	}
+
 }

@@ -26,7 +26,7 @@ public class IncentiveDetails {
 	@ManyToOne
 	@JoinColumn(name = "dealerid")
 	private CarDealer dealer;
-	@Column
+	@Column(name="amount")
 	private int amount;
 	
 
@@ -68,6 +68,15 @@ public class IncentiveDetails {
 
 	public void setAmount(int amount) {
 		this.amount = amount;
+	}
+
+	@Override
+	public String toString() {
+		return "IncentiveDetails [incentiveId=" + incentiveId + ", booking=" + booking + ", custdetails=" + custdetails
+				+ ", dealer=" + dealer + ", amount=" + amount + ", getIncentiveId()=" + getIncentiveId()
+				+ ", getBooking()=" + getBooking() + ", getCustdetails()=" + getCustdetails() + ", getDealer()="
+				+ getDealer() + ", getAmount()=" + getAmount() + ", getClass()=" + getClass() + ", hashCode()="
+				+ hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
 	

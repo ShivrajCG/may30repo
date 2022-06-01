@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.incentivesystem.dto.CarCompanyDto;
-import com.cg.incentivesystem.entites.CarDetails;
-import com.cg.incentivesystem.entites.IncentiveDetails;
 import com.cg.incentivesystem.service.CarCompanyServiceImpl;
 import com.cg.incentivesystem.service.CarDealerServiceImpl;
 import com.cg.incentivesystem.service.CarDetailsServiceImpl;
@@ -37,35 +35,20 @@ public class CarCompanyController {
 		int companyId=comService.addCarCompany(comp);
 		return new ResponseEntity<String>("added company "+companyId, HttpStatus.OK);
 	}
-//	@PostMapping("/registerdealer")
-//	public ResponseEntity<String> registerDealer(@RequestBody CarDealerDto dealerDetails){
-//		int dealerID = dealerService.addCarDealer(dealerDetails);
-//		return new ResponseEntity<String>("dealer added "+dealerID, HttpStatus.OK);
-//	}
-//	@PostMapping("/registerCarDetails")
-//	public ResponseEntity<String> registerCar(@RequestBody CarDetailsDto carDetails){
-//		int chassisNo = carService.addCarDetails(carDetails);
-//		return new ResponseEntity<String>("car added "+chassisNo, HttpStatus.OK);
-//	}
-//	@GetMapping("/viewCarcompany")
-//	public ResponseEntity<List<CarCompany>> viewAllCompany(){
-//		List<CarCompany> car=comService.viewCarCompany();
-//		return new ResponseEntity<List<CarCompany>>(car, HttpStatus.OK);
-//	}
-	@GetMapping("/viewCarDetails/{companyName}")
-	public ResponseEntity<List<CarDetails>> viewCarsByCompanyName(@PathVariable String companyName){
-		List<CarDetails> details = carService.viewCarByCompanyName(companyName);
-		return new ResponseEntity<List<CarDetails>>(details,HttpStatus.OK);
+	@GetMapping("/viewChassisNumber/{companyName}")
+	public ResponseEntity<List<Integer>> viewChassisNoByCompanyName(@PathVariable String companyName){
+		List<Integer> details = carService.viewChassisnoByCompanyName(companyName);
+		return new ResponseEntity<List<Integer>>(details,HttpStatus.OK);
 	}
-	@GetMapping("/viewIncentiveDetails/{dealerId}")
-	public ResponseEntity<List<IncentiveDetails>> viewIncentives(@PathVariable int dealerId){
-		List<IncentiveDetails> incentive = incService.viewIncentiveDetails(dealerId);
-		return new ResponseEntity<List<IncentiveDetails>>(incentive,HttpStatus.OK);
+	@GetMapping("/viewIncentiveId/{dealerId}")
+	public ResponseEntity<List<Integer>> viewIncentives(@PathVariable int dealerId){
+		List<Integer> incentive = incService.viewIncentiveDetails(dealerId);
+		return new ResponseEntity<List<Integer>>(incentive,HttpStatus.OK);
 	}
 	@PostMapping("/calculateIncentiveAmount/{incentiveId}")
 	public ResponseEntity<String> IncentiveById(@PathVariable int incentiveId) {
 		double amt =incService.caluculateIncentive(incentiveId);
-		return new ResponseEntity<String>("IncentiveAmount "+amt, HttpStatus.OK);
+		return new ResponseEntity<String>("IncentiveAmountApproved "+amt, HttpStatus.OK);
 	}
 }
 

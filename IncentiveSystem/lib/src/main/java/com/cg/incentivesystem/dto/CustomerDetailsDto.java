@@ -1,5 +1,6 @@
 package com.cg.incentivesystem.dto;
 
+
 public class CustomerDetailsDto {
 
 	private String customerName;

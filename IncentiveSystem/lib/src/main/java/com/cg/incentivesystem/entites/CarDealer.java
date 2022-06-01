@@ -95,4 +95,12 @@ public class CarDealer {
 	public void setCustomers(Set<CustomerDetails> customers) {
 		this.customers = customers;
 	}
+
+	@Override
+	public String toString() {
+		return "CarDealer [dealerId=" + dealerId + ", dealerName=" + dealerName + ", dealerBranch=" + dealerBranch
+				+ ", customers=" + customers + ", carCom=" + carCom + ", bookingDetails=" + bookingDetails
+				+ ", incentiveDetails=" + incentiveDetails + "]";
+	}
+	
 }
