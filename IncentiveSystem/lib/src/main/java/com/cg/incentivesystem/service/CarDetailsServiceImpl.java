@@ -2,7 +2,7 @@ package com.cg.incentivesystem.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import com.cg.incentivesystem.dto.ViewCarDto;
 import com.cg.incentivesystem.entites.CarCompany;
 import com.cg.incentivesystem.entites.CarDetails;
 import com.cg.incentivesystem.exception.CarCompanyNotFoundException;
-import com.cg.incentivesystem.exception.CarDetailsNotFoundException;
+
 import com.cg.incentivesystem.repository.CarCompanyRepository;
 import com.cg.incentivesystem.repository.CarDetailsRepository;
 
@@ -37,12 +37,6 @@ public class CarDetailsServiceImpl implements CarDetailsService {
 		cardetrepo.save(carDet);
 		System.out.println(detdto);
 		return carDet.getChassisNumber();
-	}
-
-	@Override
-	public void updateCarDetails(CarDetails det) {
-		cardetrepo.save(det);
-
 	}
 
 	@Override
@@ -77,7 +71,19 @@ public class CarDetailsServiceImpl implements CarDetailsService {
 	public List<ViewCarDto> viewAllCarDetails() {
 		List<CarDetails> cardet = cardetrepo.findAll();
 		List<ViewCarDto> cardto = new ArrayList<ViewCarDto>();
-		return cardto;
+//		System.out.println(cardet.get(1).getCarModel());
+//		System.out.println(cardet.size());
+		
+		for(int i=0;i<cardet.size();i++)
+		{
+			ViewCarDto cardto1 = new ViewCarDto();
+			cardto1.setCarModel(cardet.get(i).getCarModel());
+			cardto1.setCarPrice(cardet.get(i).getCarPrice());
+			cardto1.setChassisNumber(cardet.get(i).getChassisNumber());
+			cardto1.setSpecification(cardet.get(i).getSpecification());
+			cardto.add(cardto1);
+		}
+		return cardto;	
 	}
 
 }

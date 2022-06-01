@@ -3,14 +3,11 @@ package com.cg.incentivesystem.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.incentivesystem.dto.CustomerDetailsDto;
 import com.cg.incentivesystem.dto.ViewCustomerDto;
-import com.cg.incentivesystem.dto.ViewDealerDto;
 import com.cg.incentivesystem.entites.CarDealer;
 import com.cg.incentivesystem.entites.CustomerDetails;
 import com.cg.incentivesystem.exception.CustomerNotFoundException;
@@ -46,6 +43,15 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 	public List<ViewCustomerDto> viewAllCusts() {
 		List<CustomerDetails> custdet = custrepo.findAll();
 		List<ViewCustomerDto> custdto = new ArrayList<ViewCustomerDto>();
+		for(int i=0;i<custdet.size();i++)
+		{
+			ViewCustomerDto custdtox= new ViewCustomerDto();
+			custdtox.setCustomerId(custdet.get(i).getCustomerId());
+			custdtox.setCustomerMail(custdet.get(i).getCustomerMail());
+			custdtox.setCustomerMobileNo(custdet.get(i).getCustomerMobileNo());
+			custdtox.setCustomerName(custdet.get(i).getCustomerName());
+			custdto.add(custdtox);
+		}
 		return custdto;
 	}
 

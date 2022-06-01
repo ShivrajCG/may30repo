@@ -75,7 +75,7 @@ public class IncentiveDetailsServiceImpl implements IncentiveDetailsService {
 		double price = carrepo.getCarPriceByBookinId(book);
 		
 		
-		System.out.println(price);
+//		System.out.println(price);
 		if(price<5000) {
 			inc.setIncentiveAmount(0.00);
 			inc.setStatus("NotEligible");

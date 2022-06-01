@@ -6,6 +6,9 @@ public class ViewIncentiveDto {
 	private String comments;
 	private double incentiveAmount;
 	private String Status;
+	
+	
+	
 	public int getIncentiveId() {
 		return incentiveId;
 	}

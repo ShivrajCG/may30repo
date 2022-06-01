@@ -4,22 +4,19 @@ package com.cg.incentivesystem.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.incentivesystem.dto.CarDealerDto;
-import com.cg.incentivesystem.dto.ViewCarDto;
+
 import com.cg.incentivesystem.dto.ViewDealerDto;
 import com.cg.incentivesystem.entites.CarCompany;
 import com.cg.incentivesystem.entites.CarDealer;
-import com.cg.incentivesystem.entites.CarDetails;
-import com.cg.incentivesystem.entites.CustomerDetails;
+
 import com.cg.incentivesystem.exception.CarCompanyNotFoundException;
-import com.cg.incentivesystem.exception.CarDetailsNotFoundException;
-import com.cg.incentivesystem.exception.CustomerNotFoundException;
-import com.cg.incentivesystem.exception.DealerNotFoundException;
+
 import com.cg.incentivesystem.repository.CarCompanyRepository;
 import com.cg.incentivesystem.repository.CarDealerRepository;
 import com.cg.incentivesystem.repository.CarDetailsRepository;
@@ -57,6 +54,15 @@ public class CarDealerServiceImpl implements CarDealerService {
 	public List<ViewDealerDto> viewAllDealers() {
 		List<CarDealer> cardeal = dealrepo.findAll();
 		List<ViewDealerDto> dealdto = new ArrayList<ViewDealerDto>();
+		for(int i=0;i<cardeal.size();i++)
+		{
+			ViewDealerDto dealerdto = new ViewDealerDto();
+			dealerdto.setCompanyId(cardeal.get(i).getCarCom().getCompanyId());
+			dealerdto.setDealerBranch(cardeal.get(i).getDealerBranch());
+			dealerdto.setDealerId(cardeal.get(i).getDealerId());
+			dealerdto.setDealerName(cardeal.get(i).getDealerName());
+			dealdto.add(dealerdto);
+		}
 		return dealdto;
 	}
 
@@ -71,31 +77,10 @@ public class CarDealerServiceImpl implements CarDealerService {
 		return dealdto;
 	}
 
-	@Override
-	public List<CarDetails> viewAllCarDetails() {
-		return cardetrepo.findAll();
-	}
+	
 
-	@Override
-	public Optional<CarDetails> getCarById(int carChassisNo) {
-		Optional<CarDetails> det = cardetrepo.findById(carChassisNo);
-		if (det.isEmpty())
-			throw new CarDetailsNotFoundException();
-		return det;
-	}
+	
 
-	@Override
-	public List<CustomerDetails> viewAllCusts() {
-		return custrepo.findAll();
-	}
-
-	@Override
-	public Optional<CustomerDetails> getCustByID(int customerID) {
-		Optional<CustomerDetails> cust = custrepo.findById(customerID);
-		if (cust.isEmpty())
-			throw new CustomerNotFoundException();
-		return cust;
-	}
 
 	
 }
