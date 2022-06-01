@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.cg.incentivesystem.dto.CarDealerDto;
+import com.cg.incentivesystem.dto.ViewDealerDto;
 import com.cg.incentivesystem.entites.CarDealer;
 import com.cg.incentivesystem.entites.CarDetails;
 import com.cg.incentivesystem.entites.CustomerDetails;
@@ -18,9 +19,9 @@ import com.cg.incentivesystem.exception.DealerNotFoundException;
 public interface CarDealerService {
 	int addCarDealer(CarDealerDto dealdto) throws CarCompanyNotFoundException;
 
-	List<CarDealer> viewAllDealers();
+	List<ViewDealerDto> viewAllDealers();
 
-	CarDealer getDealerById(int dealerID) throws DealerNotFoundException;
+	ViewDealerDto getDealerById(int dealerId) throws DealerNotFoundException;
 
 	List<CarDetails> viewAllCarDetails();
 

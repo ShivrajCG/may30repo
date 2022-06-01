@@ -1,5 +1,6 @@
 package com.cg.incentivesystem.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.incentivesystem.dto.CarDetailsDto;
+import com.cg.incentivesystem.dto.ViewCarDto;
 import com.cg.incentivesystem.entites.CarCompany;
 import com.cg.incentivesystem.entites.CarDetails;
 import com.cg.incentivesystem.exception.CarCompanyNotFoundException;
@@ -15,17 +17,18 @@ import com.cg.incentivesystem.repository.CarCompanyRepository;
 import com.cg.incentivesystem.repository.CarDetailsRepository;
 
 @Service
-public class CarDetailsServiceImpl implements CarDetailsService{
+public class CarDetailsServiceImpl implements CarDetailsService {
 	@Autowired
 	CarDetailsRepository cardetrepo;
 	@Autowired
 	CarCompanyRepository carcomrepo;
+
 	@Override
 	public int addCarDetails(CarDetailsDto detdto) {
-		CarCompany carcomp= carcomrepo.getById(detdto.getCompanyId());
-		if(carcomp==null)
+		CarCompany carcomp = carcomrepo.getById(detdto.getCompanyId());
+		if (carcomp == null)
 			throw new CarCompanyNotFoundException();
-		
+
 		CarDetails carDet = new CarDetails();
 		carDet.setCarModel(detdto.getCarModel());
 		carDet.setCarPrice(detdto.getCarPrice());
@@ -34,19 +37,6 @@ public class CarDetailsServiceImpl implements CarDetailsService{
 		cardetrepo.save(carDet);
 		System.out.println(detdto);
 		return carDet.getChassisNumber();
-	}
-
-	@Override
-	public List<CarDetails> viewAllCarDetails() {
-		return cardetrepo.findAll();
-	}
-
-	@Override
-	public Optional<CarDetails> getCarById(int carChassisNo)  {
-		Optional<CarDetails> det = cardetrepo.findById(carChassisNo);
-		if(det.isEmpty())
-			throw new CarDetailsNotFoundException();
-		return det;
 	}
 
 	@Override
@@ -59,18 +49,35 @@ public class CarDetailsServiceImpl implements CarDetailsService{
 	public void deleteCarDetails(int carChassisNo) {
 		cardetrepo.deleteById(carChassisNo);
 
-}
+	}
 
 	@Override
 	public List<Integer> viewChassisnoByCompanyName(String compName) {
-		CarCompany comp = carcomrepo.getByName(compName); 
+		CarCompany comp = carcomrepo.getByName(compName);
 		List<Integer> chassisno = cardetrepo.getChassisNumberByCompanyName(comp);
-		if(chassisno.isEmpty())
+		if (chassisno.isEmpty())
 			throw new CarCompanyNotFoundException();
-		else
-		{
+		else {
 			return chassisno;
 		}
+	}
+
+	@Override
+	public ViewCarDto getCarDetailsById(int chassisNumber) {
+		CarDetails cardet = cardetrepo.getById(chassisNumber);
+		ViewCarDto cardto = new ViewCarDto();
+		cardto.setChassisNumber(cardet.getChassisNumber());
+		cardto.setCarModel(cardet.getCarModel());
+		cardto.setCarPrice(cardet.getCarPrice());
+		cardto.setSpecification(cardet.getSpecification());
+		return cardto;
+	}
+
+	@Override
+	public List<ViewCarDto> viewAllCarDetails() {
+		List<CarDetails> cardet = cardetrepo.findAll();
+		List<ViewCarDto> cardto = new ArrayList<ViewCarDto>();
+		return cardto;
 	}
 
 }

@@ -18,6 +18,10 @@ import com.cg.incentivesystem.dto.CarDealerDto;
 import com.cg.incentivesystem.dto.CarDetailsDto;
 import com.cg.incentivesystem.dto.CustomerDetailsDto;
 import com.cg.incentivesystem.dto.IncentiveDetailsDto;
+import com.cg.incentivesystem.dto.ViewCarDto;
+import com.cg.incentivesystem.dto.ViewCustomerDto;
+import com.cg.incentivesystem.dto.ViewDealerDto;
+import com.cg.incentivesystem.dto.ViewIncentiveDto;
 import com.cg.incentivesystem.entites.CarDealer;
 import com.cg.incentivesystem.entites.CarDetails;
 import com.cg.incentivesystem.entites.CustomerDetails;
@@ -28,10 +32,9 @@ import com.cg.incentivesystem.service.CustomerDetailsServiceImpl;
 import com.cg.incentivesystem.service.IncentiveDetailsServiceImpl;
 
 @RestController
-@RequestMapping("/deal")
+@RequestMapping("/dealer")
 public class CarDealerController {
-	@Autowired
-	CarDetailsServiceImpl carservice;
+
 	@Autowired
 	CustomerDetailsServiceImpl custService;
 	@Autowired
@@ -45,8 +48,8 @@ public class CarDealerController {
 
 	@PostMapping("/addCarDetails")
 	public ResponseEntity<String> addCarDetails(@RequestBody CarDetailsDto details) {
-		int chasissno = carservice.addCarDetails(details);
-		return new ResponseEntity<String>("inserted"+chasissno, HttpStatus.OK);
+		int chasissno = carService.addCarDetails(details);
+		return new ResponseEntity<String>("inserted" + chasissno, HttpStatus.OK);
 	}
 
 	@PostMapping("/addCustomerDetails")
@@ -62,54 +65,53 @@ public class CarDealerController {
 	}
 
 	@GetMapping("/viewAllCars")
-	public ResponseEntity<List<CarDetails>> getAllCars() {
-
-		List<CarDetails> carList = carService.viewAllCarDetails();
-		return new ResponseEntity<List<CarDetails>>(carList, HttpStatus.OK);
+	public ResponseEntity<List<ViewCarDto>> getAllCars() {
+		List<ViewCarDto> cardto = carService.viewAllCarDetails();
+		return new ResponseEntity<List<ViewCarDto>>(cardto, HttpStatus.OK);
 	}
 
-	@GetMapping("/id/{chassisNumber}")
-	public ResponseEntity<Optional<CarDetails>> getCarById(@PathVariable int chassisNumber) {
-
-		Optional<CarDetails> det = carService.getCarById(chassisNumber);
-		return new ResponseEntity<Optional<CarDetails>>(det, HttpStatus.OK);
+	@GetMapping("/viewCarByChassis/{chassisNumber}")
+	public ResponseEntity<ViewCarDto> viewCarDetailsById(@PathVariable int chassisNumber) {
+		ViewCarDto cardto = carService.getCarDetailsById(chassisNumber);
+		return new ResponseEntity<ViewCarDto>(cardto, HttpStatus.OK);
 	}
 
 	@GetMapping("/viewAllDealer")
-	public ResponseEntity<List<CarDealer>> getAllDealers() {
-
-		List<CarDealer> dealList = dealService.viewAllDealers();
-		return new ResponseEntity<List<CarDealer>>(dealList, HttpStatus.OK);
+	public ResponseEntity<List<ViewDealerDto>> getAllDealers() {
+		List<ViewDealerDto> dealdto = dealService.viewAllDealers();
+		return new ResponseEntity<List<ViewDealerDto>>(dealdto, HttpStatus.OK);
 	}
 
 	@GetMapping("/dealer/{dealerId}")
-	public ResponseEntity<CarDealer> getDealerById(@PathVariable int dealerId) {
+	public ResponseEntity<ViewDealerDto> getDealerById(@PathVariable int dealerId) {
 
-		CarDealer deal = dealService.getDealerById(dealerId);
-		return new ResponseEntity<CarDealer>(deal, HttpStatus.OK);
+		ViewDealerDto dealdto = dealService.getDealerById(dealerId);
+		return new ResponseEntity<ViewDealerDto>(dealdto, HttpStatus.OK);
 	}
 
 	@GetMapping("/viewAllCusts")
-	public ResponseEntity<List<CustomerDetails>> getAllCusts() {
+	public ResponseEntity<List<ViewCustomerDto>> getAllCusts() {
 
-		List<CustomerDetails> custList = custService.viewAllCusts();
-		return new ResponseEntity<List<CustomerDetails>>(custList, HttpStatus.OK);
+		List<ViewCustomerDto> custdto = custService.viewAllCusts();
+		return new ResponseEntity<List<ViewCustomerDto>>(custdto, HttpStatus.OK);
 	}
 
 	@GetMapping("/customer/{customerId}")
-	public ResponseEntity<Optional<CustomerDetails>> getCustById(@PathVariable int customerId) {
+	public ResponseEntity<ViewCustomerDto> getCustomerByID(@PathVariable int customerId) {
 
-		Optional<CustomerDetails> cust = custService.getCustById(customerId);
-		return new ResponseEntity<Optional<CustomerDetails>>(cust, HttpStatus.OK);
+		ViewCustomerDto custdto = custService.getCustomerById(customerId);
+		return new ResponseEntity<ViewCustomerDto>(custdto, HttpStatus.OK);
 	}
+
 	@PostMapping("/addIncentiveDetails")
-	public ResponseEntity<String> addIncentive(@RequestBody IncentiveDetailsDto incdetails){
+	public ResponseEntity<String> addIncentive(@RequestBody IncentiveDetailsDto incdetails) {
 		int incentiveId = inceService.addIncentiveDetails(incdetails);
-		return new ResponseEntity<String>("incentive added "+ incentiveId, HttpStatus.OK);
+		return new ResponseEntity<String>("incentive added " + incentiveId, HttpStatus.OK);
 	}
+
 	@PostMapping("/addBookingDetails")
-	public ResponseEntity<String> addBookingDetails(@RequestBody BookingDetailsDto bookdetails){
+	public ResponseEntity<String> addBookingDetails(@RequestBody BookingDetailsDto bookdetails) {
 		int bookingID = bookservice.addBookingDetails(bookdetails);
-		return new ResponseEntity<String>("carbooked added "+ bookingID, HttpStatus.OK);
+		return new ResponseEntity<String>("carbooked added " + bookingID, HttpStatus.OK);
 	}
 }

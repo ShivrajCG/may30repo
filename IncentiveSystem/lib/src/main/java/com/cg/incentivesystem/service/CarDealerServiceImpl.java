@@ -2,6 +2,7 @@ package com.cg.incentivesystem.service;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.incentivesystem.dto.CarDealerDto;
+import com.cg.incentivesystem.dto.ViewCarDto;
+import com.cg.incentivesystem.dto.ViewDealerDto;
 import com.cg.incentivesystem.entites.CarCompany;
 import com.cg.incentivesystem.entites.CarDealer;
 import com.cg.incentivesystem.entites.CarDetails;
@@ -51,16 +54,21 @@ public class CarDealerServiceImpl implements CarDealerService {
 	}
 
 	@Override
-	public List<CarDealer> viewAllDealers() {
-		return dealrepo.findAll();
+	public List<ViewDealerDto> viewAllDealers() {
+		List<CarDealer> cardeal = dealrepo.findAll();
+		List<ViewDealerDto> dealdto = new ArrayList<ViewDealerDto>();
+		return dealdto;
 	}
 
 	@Override
-	public CarDealer getDealerById(int dealerID)  {
-		CarDealer deal = dealrepo.getById(dealerID);
-		if (deal==null)
-			throw new DealerNotFoundException();
-		return deal;
+	public ViewDealerDto getDealerById(int dealerId)  {
+		CarDealer cardeal = dealrepo.getById(dealerId);
+		ViewDealerDto dealdto = new ViewDealerDto();
+		dealdto.setDealerId(cardeal.getDealerId());
+		dealdto.setDealerName(cardeal.getDealerName());
+		dealdto.setDealerBranch(cardeal.getDealerBranch());
+		dealdto.setCompanyId(cardeal.getCarCom().getCompanyId());
+		return dealdto;
 	}
 
 	@Override
