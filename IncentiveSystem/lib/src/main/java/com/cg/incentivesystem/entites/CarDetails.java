@@ -11,6 +11,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "cardetails")
 public class CarDetails {
@@ -26,6 +28,7 @@ public class CarDetails {
 	private String carModel;
 	@ManyToOne
 	@JoinColumn(name = "companyId")
+	@JsonBackReference
 	private CarCompany carCom;
 	@OneToOne(mappedBy = "carDetails")
 	private BookingDetails bookingDetails;

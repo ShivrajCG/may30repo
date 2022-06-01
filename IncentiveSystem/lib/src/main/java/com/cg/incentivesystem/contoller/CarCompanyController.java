@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.incentivesystem.dto.CarCompanyDto;
+import com.cg.incentivesystem.dto.ViewIncentiveDto;
 import com.cg.incentivesystem.service.CarCompanyServiceImpl;
 import com.cg.incentivesystem.service.CarDealerServiceImpl;
 import com.cg.incentivesystem.service.CarDetailsServiceImpl;
@@ -49,6 +50,11 @@ public class CarCompanyController {
 	public ResponseEntity<String> IncentiveById(@PathVariable int incentiveId) {
 		double amt =incService.caluculateIncentive(incentiveId);
 		return new ResponseEntity<String>("IncentiveAmountApproved "+amt, HttpStatus.OK);
+	}
+	@GetMapping("/viewIncentivesStatus/{incentiveId}")
+	public ResponseEntity<ViewIncentiveDto> viewIncentiveStatus(@PathVariable int incentiveId){
+		ViewIncentiveDto incdto = incService.getIncentiveStatus(incentiveId);
+		return new ResponseEntity<ViewIncentiveDto>(incdto, HttpStatus.OK);
 	}
 }
 

@@ -15,6 +15,6 @@ public interface IncentiveDetailsRepository  extends JpaRepository<IncentiveDeta
 	List<Integer> viewIncentiveBydealerId(CarDealer deal);
 	
 	
-	@Query("select incentive.amount from IncentiveDetails incentive where incentive.incentiveId=?1")
-	int getAmountById(int incentiveId);
+//	@Query("select incentive.amount from IncentiveDetails incentive where incentive.incentiveId=?1")
+//	int getAmountById(int incentiveId);
 }

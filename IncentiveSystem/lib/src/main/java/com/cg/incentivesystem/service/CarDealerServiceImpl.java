@@ -16,7 +16,6 @@ import com.cg.incentivesystem.entites.CustomerDetails;
 import com.cg.incentivesystem.exception.CarCompanyNotFoundException;
 import com.cg.incentivesystem.exception.CarDetailsNotFoundException;
 import com.cg.incentivesystem.exception.CustomerNotFoundException;
-import com.cg.incentivesystem.exception.DealerAlreadyExistException;
 import com.cg.incentivesystem.exception.DealerNotFoundException;
 import com.cg.incentivesystem.repository.CarCompanyRepository;
 import com.cg.incentivesystem.repository.CarDealerRepository;
@@ -35,7 +34,7 @@ public class CarDealerServiceImpl implements CarDealerService {
 	CustomerDetailsRepository custrepo;
 
 	@Override
-	public int addCarDealer(CarDealerDto dealdto) throws DealerAlreadyExistException {
+	public int addCarDealer(CarDealerDto dealdto) {
 		CarCompany carcom = carComrepo.getById(dealdto.getCompanyId());
 		if (carcom == null)
 			throw new CarCompanyNotFoundException();
@@ -57,9 +56,9 @@ public class CarDealerServiceImpl implements CarDealerService {
 	}
 
 	@Override
-	public Optional<CarDealer> getDealerById(int dealerID) throws DealerNotFoundException {
-		Optional<CarDealer> deal = dealrepo.findById(dealerID);
-		if (deal.isEmpty())
+	public CarDealer getDealerById(int dealerID)  {
+		CarDealer deal = dealrepo.getById(dealerID);
+		if (deal==null)
 			throw new DealerNotFoundException();
 		return deal;
 	}
@@ -70,7 +69,7 @@ public class CarDealerServiceImpl implements CarDealerService {
 	}
 
 	@Override
-	public Optional<CarDetails> getCarById(int carChassisNo) throws CarDetailsNotFoundException {
+	public Optional<CarDetails> getCarById(int carChassisNo) {
 		Optional<CarDetails> det = cardetrepo.findById(carChassisNo);
 		if (det.isEmpty())
 			throw new CarDetailsNotFoundException();
@@ -83,7 +82,7 @@ public class CarDealerServiceImpl implements CarDealerService {
 	}
 
 	@Override
-	public Optional<CustomerDetails> getCustByID(int customerID) throws CustomerNotFoundException {
+	public Optional<CustomerDetails> getCustByID(int customerID) {
 		Optional<CustomerDetails> cust = custrepo.findById(customerID);
 		if (cust.isEmpty())
 			throw new CustomerNotFoundException();

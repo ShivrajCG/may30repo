@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "incentivedetails")
 public class IncentiveDetails {
@@ -22,12 +24,18 @@ public class IncentiveDetails {
 	private BookingDetails booking;
 	@ManyToOne
 	@JoinColumn(name = "customerid")
+	@JsonBackReference
 	private CustomerDetails custdetails;
 	@ManyToOne
 	@JoinColumn(name = "dealerid")
+	@JsonBackReference
 	private CarDealer dealer;
-	@Column(name="amount")
-	private int amount;
+	@Column(name="incentiveAmount")
+	private double incentiveAmount;
+	@Column(name = "status")
+	private String status;
+	@Column(name="comments")
+	private String comments;
 	
 
 	public int getIncentiveId() {
@@ -54,6 +62,39 @@ public class IncentiveDetails {
 		this.custdetails = custdetails;
 	}
 
+	@Override
+	public String toString() {
+		return "IncentiveDetails [incentiveId=" + incentiveId + ", booking=" + booking + ", custdetails=" + custdetails
+				+ ", dealer=" + dealer + ", incentiveAmount=" + incentiveAmount + ", status=" + status + ", comments="
+				+ comments + "]";
+	}
+
+
+
+	public double getIncentiveAmount() {
+		return incentiveAmount;
+	}
+
+	public void setIncentiveAmount(double incentiveAmount) {
+		this.incentiveAmount = incentiveAmount;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
 	public CarDealer getDealer() {
 		return dealer;
 	}
@@ -62,22 +103,7 @@ public class IncentiveDetails {
 		this.dealer = dealer;
 	}
 
-	public int getAmount() {
-		return amount;
-	}
 
-	public void setAmount(int amount) {
-		this.amount = amount;
-	}
-
-	@Override
-	public String toString() {
-		return "IncentiveDetails [incentiveId=" + incentiveId + ", booking=" + booking + ", custdetails=" + custdetails
-				+ ", dealer=" + dealer + ", amount=" + amount + ", getIncentiveId()=" + getIncentiveId()
-				+ ", getBooking()=" + getBooking() + ", getCustdetails()=" + getCustdetails() + ", getDealer()="
-				+ getDealer() + ", getAmount()=" + getAmount() + ", getClass()=" + getClass() + ", hashCode()="
-				+ hashCode() + ", toString()=" + super.toString() + "]";
-	}
-
+	
 	
 }

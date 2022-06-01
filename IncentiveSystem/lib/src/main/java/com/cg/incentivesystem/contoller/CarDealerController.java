@@ -82,11 +82,11 @@ public class CarDealerController {
 		return new ResponseEntity<List<CarDealer>>(dealList, HttpStatus.OK);
 	}
 
-	@GetMapping("/id/{dealerId}")
-	public ResponseEntity<Optional<CarDealer>> getDealerById(@PathVariable int dealerId) {
+	@GetMapping("/dealer/{dealerId}")
+	public ResponseEntity<CarDealer> getDealerById(@PathVariable int dealerId) {
 
-		Optional<CarDealer> deal = dealService.getDealerById(dealerId);
-		return new ResponseEntity<Optional<CarDealer>>(deal, HttpStatus.OK);
+		CarDealer deal = dealService.getDealerById(dealerId);
+		return new ResponseEntity<CarDealer>(deal, HttpStatus.OK);
 	}
 
 	@GetMapping("/viewAllCusts")
@@ -96,7 +96,7 @@ public class CarDealerController {
 		return new ResponseEntity<List<CustomerDetails>>(custList, HttpStatus.OK);
 	}
 
-	@GetMapping("/id/{customerId}")
+	@GetMapping("/customer/{customerId}")
 	public ResponseEntity<Optional<CustomerDetails>> getCustById(@PathVariable int customerId) {
 
 		Optional<CustomerDetails> cust = custService.getCustById(customerId);

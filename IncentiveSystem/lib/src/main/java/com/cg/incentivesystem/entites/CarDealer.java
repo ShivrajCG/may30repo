@@ -17,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "cardealer")
 public class CarDealer {
@@ -34,6 +36,7 @@ public class CarDealer {
 	private Set<CustomerDetails> customers;
 	@ManyToOne
 	@JoinColumn(name = "companyId")
+	@JsonBackReference
 	private CarCompany carCom;
 	@OneToMany(mappedBy = "cardealer", cascade = CascadeType.ALL)
 	private List<BookingDetails> bookingDetails;

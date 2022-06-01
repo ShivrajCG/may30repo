@@ -10,11 +10,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.cg.incentivesystem.dto.CarCompanyDto;
 import com.cg.incentivesystem.dto.CarDealerDto;
 import com.cg.incentivesystem.dto.CarDetailsDto;
 import com.cg.incentivesystem.dto.CustomerDetailsDto;
-import com.cg.incentivesystem.entites.CarCompany;
 import com.cg.incentivesystem.entites.CarDealer;
 import com.cg.incentivesystem.entites.CarDetails;
 import com.cg.incentivesystem.entites.CustomerDetails;

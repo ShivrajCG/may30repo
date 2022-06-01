@@ -55,7 +55,7 @@ public class IncentiveSystemExceptionHandler {
 	}
 	@ExceptionHandler(value = PSQLException.class)
 	public ResponseEntity<Object> exception(PSQLException exception){
-		return new ResponseEntity<Object>("ChassisNumberAlreadyBooked....", HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Object>("IncorrectDetails...... ", HttpStatus.NOT_FOUND);
 	}
 
 }

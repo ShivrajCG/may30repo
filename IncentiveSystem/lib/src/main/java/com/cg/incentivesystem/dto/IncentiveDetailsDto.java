@@ -5,7 +5,6 @@ public class IncentiveDetailsDto {
 	private int bookingId;
 	private int customerId;
 	private int dealerId;
-	private int amount;
 
 
 
@@ -33,21 +32,15 @@ public class IncentiveDetailsDto {
 		this.dealerId = dealerId;
 	}
 
-	public int getAmount() {
-		return amount;
-	}
-
-	public void setAmount(int amount) {
-		this.amount = amount;
-	}
-
 	@Override
 	public String toString() {
 		return "IncentiveDetailsDto [bookingId=" + bookingId + ", customerId=" + customerId + ", dealerId=" + dealerId
-				+ ", amount=" + amount + ", getBookingId()=" + getBookingId() + ", getCustomerId()=" + getCustomerId()
-				+ ", getDealerId()=" + getDealerId() + ", getAmount()=" + getAmount() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+				+ "]";
 	}
+
+
+
+
 
 	
 }
