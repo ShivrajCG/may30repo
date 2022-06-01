@@ -15,6 +15,6 @@ import com.cg.incentivesystem.entites.CarDetails;
 @Repository
 public interface CarDetailsRepository extends JpaRepository<CarDetails, Integer> {
 	@Query("select del.chassisNumber from CarDetails del where del.carCom=?1")
-	List<Integer> getCarDetailsByCompanyName(CarCompany comp);
+	List<Integer> getChassisNumberByCompanyName(CarCompany comp);
 	
 }

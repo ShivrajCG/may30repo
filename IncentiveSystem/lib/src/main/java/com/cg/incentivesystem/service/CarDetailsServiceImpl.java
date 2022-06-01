@@ -65,7 +65,7 @@ public class CarDetailsServiceImpl implements CarDetailsService{
 	@Override
 	public List<Integer> viewChassisnoByCompanyName(String compName) {
 		CarCompany comp = carcomrepo.getByName(compName); 
-		List<Integer> chassisno = cardetrepo.getCarDetailsByCompanyName(comp);
+		List<Integer> chassisno = cardetrepo.getChassisNumberByCompanyName(comp);
 		if(chassisno.isEmpty())
 			throw new CarCompanyNotFoundException();
 		else
