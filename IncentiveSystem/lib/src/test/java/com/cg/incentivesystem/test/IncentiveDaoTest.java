@@ -12,6 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cg.incentivesystem.dto.CarCompanyDto;
 import com.cg.incentivesystem.dto.CarDealerDto;
+import com.cg.incentivesystem.dto.CarDetailsDto;
+import com.cg.incentivesystem.dto.CustomerDetailsDto;
 import com.cg.incentivesystem.entites.CarCompany;
 import com.cg.incentivesystem.entites.CarDealer;
 import com.cg.incentivesystem.entites.CarDetails;
@@ -32,6 +34,33 @@ public class IncentiveDaoTest {
 	CarDetailsRepository cardetrepo;
 	@Autowired
 	CustomerDetailsRepository custrepo;
+
+	@Test
+	void testAddCarDealer() {
+		CarDealerDto cardealerdto = new CarDealerDto();
+		cardealerdto.setCompanyId(2);
+		cardealerdto.setDealerName("tim");
+		cardealerdto.setDealerBranch("delhi");
+	}
+
+	@Test
+	void testAddCarDetails() {
+		CarDetailsDto cardetailsdto = new CarDetailsDto();
+		cardetailsdto.setCarModel("zen");
+		cardetailsdto.setCompanyId(2);
+		cardetailsdto.setCarPrice(150000);
+		cardetailsdto.setSpecification("petrol");
+	}
+
+	@Test
+	void testAddCustomer() {
+		CustomerDetailsDto customerdto = new CustomerDetailsDto();
+		customerdto.setDealerID(3);
+		customerdto.setCustomerName("mike");
+		customerdto.setCustomerMobileNo(88658954l);
+		customerdto.setCustomerMail("mike@abc.com");
+
+	}
 
 	@Test
 	public void testGetDealerById() {
