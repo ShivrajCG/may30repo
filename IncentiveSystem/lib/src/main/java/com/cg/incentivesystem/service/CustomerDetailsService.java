@@ -18,5 +18,5 @@ public interface CustomerDetailsService {
 
 	ViewCustomerDto getCustomerById(int customerId) throws CustomerNotFoundException;
 	
-	void updateCustomerById(ViewCustomerDto customerDto) throws CustomerNotFoundException;
+	
 }

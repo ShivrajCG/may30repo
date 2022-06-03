@@ -72,22 +72,7 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 		
 	}
 
-	@Override
-	public void updateCustomerById(ViewCustomerDto cutomerDto) throws CustomerNotFoundException {
-		CustomerDetails custdet = custrepo.getCustomerById(cutomerDto.getCustomerId());
-		if(custdet==null)
-			throw new CustomerNotFoundException();
-		else
-		{
-			CustomerDetails cust = new CustomerDetails();
-			cust.setCustomerName(cutomerDto.getCustomerName());
-			cust.setCustomerMobileNo(cutomerDto.getCustomerMobileNo());
-			cust.setCustomerMail(cutomerDto.getCustomerMail());
-
-			custrepo.save(cust);	
-		}
-		
-	}
+	
 
 	
 }

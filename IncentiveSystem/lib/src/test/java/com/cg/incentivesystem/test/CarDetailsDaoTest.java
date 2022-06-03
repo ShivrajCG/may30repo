@@ -12,14 +12,14 @@ import com.cg.incentivesystem.repository.CarCompanyRepository;
 import com.cg.incentivesystem.repository.CarDetailsRepository;
 
 @SpringBootTest
-public class CarDetailsDaoTest {
+class CarDetailsDaoTest {
 	@Autowired
 	CarDetailsRepository detrepo;
 	@Autowired
 	CarCompanyRepository comprepo;
 	
 	@Test
-	public void testGetChassisNumberByCompanyName() {
+	void testGetChassisNumberByCompanyName() {
 		CarCompany comp = comprepo.getByName("Maruti");
 		List<Integer> chassisno = detrepo.getChassisNumberByCompanyName(comp);
 		System.out.println(chassisno);

@@ -22,7 +22,7 @@ import com.cg.incentivesystem.repository.CarDetailsRepository;
 import com.cg.incentivesystem.repository.CustomerDetailsRepository;
 
 @SpringBootTest
-public class IncentiveDaoTest {
+ class IncentiveDaoTest {
 
 	@Autowired
 	CarDealerRepository dealrepo;
@@ -61,21 +61,21 @@ public class IncentiveDaoTest {
 	}
 
 	@Test
-	public void testGetDealerById() {
+	 void testGetDealerById() {
 		CarDealer deal = dealrepo.getById(3);
 		System.out.println(deal.getDealerId());
 		assertEquals(deal.getDealerId(), 3);
 	}
 
 	@Test
-	public void getCarById() {
+ void getCarById() {
 		CarDetails det = cardetrepo.getById(12000293);
 		System.out.println(det.getChassisNumber());
-		assertEquals(det.getChassisNumber(), 12000293);
+		assertEquals(12000293,det.getChassisNumber() );
 	}
 
 	@Test
-	public void getCustByID() {
+	 void getCustByID() {
 		CustomerDetails cust = custrepo.getById(4);
 		System.out.println(cust.getCustomerId());
 		assertEquals(cust.getCustomerId(), 4);
@@ -88,7 +88,7 @@ public class IncentiveDaoTest {
 	}
 
 	@Test
-	public void testGetAllItemsNull() {
+	 void testGetAllItemsNull() {
 		List<CarDealer> deallist = dealrepo.findAll();
 		assertNull(deallist);
 	}

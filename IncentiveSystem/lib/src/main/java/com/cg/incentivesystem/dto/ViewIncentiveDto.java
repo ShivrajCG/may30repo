@@ -5,7 +5,7 @@ public class ViewIncentiveDto {
 	private int incentiveId;
 	private String comments;
 	private double incentiveAmount;
-	private String Status;
+	private String status;
 	
 	
 	
@@ -28,15 +28,15 @@ public class ViewIncentiveDto {
 		this.incentiveAmount = incentiveAmount;
 	}
 	public String getStatus() {
-		return Status;
+		return status;
 	}
 	public void setStatus(String status) {
-		Status = status;
+		this.status = status;
 	}
 	@Override
 	public String toString() {
 		return "ViewIncentiveDto [incentiveId=" + incentiveId + ", comments=" + comments + ", incentiveAmount="
-				+ incentiveAmount + ", Status=" + Status + "]";
+				+ incentiveAmount + ", Status=" + status + "]";
 	}
 	
 

@@ -81,6 +81,7 @@ public class BookingDetailsServiceImpl implements BookingDetailsService {
 			bookingDto.setBookingId(bookingDet.getBookingId());
 			bookingDto.setCardealerId(bookingDet.getCardealer().getDealerId());
 			bookingDto.setChassisno(bookingDet.getCarDetails().getChassisNumber());
+			bookingDto.setCustomerId(bookingDet.getCustdetails().getCustomerId());
 			return bookingDto;
 		}
 		

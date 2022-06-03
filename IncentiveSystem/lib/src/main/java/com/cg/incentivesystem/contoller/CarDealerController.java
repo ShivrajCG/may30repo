@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -85,23 +84,22 @@ public class CarDealerController {
 		return new ResponseEntity<List<ViewDealerDto>>(dealdto, HttpStatus.OK);
 	}
 
-	@GetMapping("/dealer/{dealerId}")
+	@GetMapping("/dealerDetails/{dealerId}")
 	public ResponseEntity<ViewDealerDto> getDealerById(@PathVariable int dealerId) {
 
 		ViewDealerDto dealdto = dealService.getDealerById(dealerId);
 		return new ResponseEntity<ViewDealerDto>(dealdto, HttpStatus.OK);
 	}
 
-	@GetMapping("/viewAllCusts")
+	@GetMapping("/viewAllCustomerDetails")
 	public ResponseEntity<List<ViewCustomerDto>> getAllCusts() {
 
 		List<ViewCustomerDto> custdto = custService.viewAllCusts();
 		return new ResponseEntity<List<ViewCustomerDto>>(custdto, HttpStatus.OK);
 	}
 
-	@GetMapping("/customer/{customerId}")
+	@GetMapping("/customerDetails/{customerId}")
 	public ResponseEntity<ViewCustomerDto> getCustomerByID(@PathVariable int customerId) {
-
 		ViewCustomerDto custdto = custService.getCustomerById(customerId);
 		return new ResponseEntity<ViewCustomerDto>(custdto, HttpStatus.OK);
 	}
@@ -117,18 +115,14 @@ public class CarDealerController {
 		int bookingID = bookservice.addBookingDetails(bookdetails);
 		return new ResponseEntity<String>("carbooked added " + bookingID, HttpStatus.OK);
 	}
-	@PutMapping("/updateCustomerDetails")
-	public ResponseEntity<String> updateCustomerDetails(@RequestBody ViewCustomerDto customerDto){
-		custService.updateCustomerById(customerDto);
-		return new ResponseEntity<String>("customer updated", HttpStatus.OK);
-	}
+	
 	@GetMapping("/viewAllBookingDetails")
 	public ResponseEntity<List<ViewBookingDto>> viewAllBookingDetails(){
 		List<ViewBookingDto> bookingDetails=bookservice.getAllBookingDetails();
 		return new ResponseEntity<List<ViewBookingDto>>(bookingDetails, HttpStatus.OK);
 	}
-	@GetMapping("/viewBookingDetailsById")
-	public ResponseEntity<ViewBookingDto> viewBookingDetailsbyId(@RequestBody int bookingId){
+	@GetMapping("/viewBookingDetailsById/{bookingId}")
+	public ResponseEntity<ViewBookingDto> viewBookingDetailsbyId(@PathVariable int bookingId){
 		ViewBookingDto bookingDetails = bookservice.getBookingDetailsById(bookingId);
 		return new ResponseEntity<ViewBookingDto>(bookingDetails, HttpStatus.OK);
 	}
@@ -137,7 +131,7 @@ public class CarDealerController {
 		List<ViewCarCompanyDto> companyDetails = compservice.getAllCarCompany();
 		return new ResponseEntity<>(companyDetails, HttpStatus.OK);
 	}
-	@GetMapping("/viewCarcompanyById")
+	@GetMapping("/viewCarcompanyById/{companyId}")
 	public ResponseEntity<ViewCarCompanyDto> viewCarcompanyById(@PathVariable int companyId){
 		ViewCarCompanyDto companyDto = compservice.getCarCompanyById(companyId);
 		return new ResponseEntity<ViewCarCompanyDto>(companyDto, HttpStatus.OK);
