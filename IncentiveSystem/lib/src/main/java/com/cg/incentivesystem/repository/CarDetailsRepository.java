@@ -18,4 +18,7 @@ public interface CarDetailsRepository extends JpaRepository<CarDetails, Integer>
 	
 	@Query("select del.carPrice from CarDetails del where del.bookingDetails=?1")
 	double getCarPriceByBookinId(BookingDetails book);
+	
+	@Query("select deltails from CarDetails deltails where deltails.chassisNumber=?1")
+	CarDetails getCarDetailsByChassisNumber(int chassisNumber);
 }

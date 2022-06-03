@@ -16,7 +16,7 @@ import com.cg.incentivesystem.entites.CarCompany;
 import com.cg.incentivesystem.entites.CarDealer;
 
 import com.cg.incentivesystem.exception.CarCompanyNotFoundException;
-
+import com.cg.incentivesystem.exception.DealerNotFoundException;
 import com.cg.incentivesystem.repository.CarCompanyRepository;
 import com.cg.incentivesystem.repository.CarDealerRepository;
 import com.cg.incentivesystem.repository.CarDetailsRepository;
@@ -35,7 +35,7 @@ public class CarDealerServiceImpl implements CarDealerService {
 
 	@Override
 	public int addCarDealer(CarDealerDto dealdto) {
-		CarCompany carcom = carComrepo.getById(dealdto.getCompanyId());
+		CarCompany carcom = carComrepo.getCompanyById(dealdto.getCompanyId());
 		if (carcom == null)
 			throw new CarCompanyNotFoundException();
 
@@ -45,7 +45,6 @@ public class CarDealerServiceImpl implements CarDealerService {
 
 		deal.setCarCom(carcom);
 		dealrepo.save(deal);
-		System.out.println(dealdto);
 		return deal.getDealerId();
 
 	}
@@ -53,7 +52,7 @@ public class CarDealerServiceImpl implements CarDealerService {
 	@Override
 	public List<ViewDealerDto> viewAllDealers() {
 		List<CarDealer> cardeal = dealrepo.findAll();
-		List<ViewDealerDto> dealdto = new ArrayList<ViewDealerDto>();
+		List<ViewDealerDto> dealdto = new ArrayList<>();
 		for(int i=0;i<cardeal.size();i++)
 		{
 			ViewDealerDto dealerdto = new ViewDealerDto();
@@ -68,13 +67,19 @@ public class CarDealerServiceImpl implements CarDealerService {
 
 	@Override
 	public ViewDealerDto getDealerById(int dealerId)  {
-		CarDealer cardeal = dealrepo.getById(dealerId);
-		ViewDealerDto dealdto = new ViewDealerDto();
-		dealdto.setDealerId(cardeal.getDealerId());
-		dealdto.setDealerName(cardeal.getDealerName());
-		dealdto.setDealerBranch(cardeal.getDealerBranch());
-		dealdto.setCompanyId(cardeal.getCarCom().getCompanyId());
-		return dealdto;
+		CarDealer cardeal = dealrepo.getDealByID(dealerId);
+		if(cardeal==null)
+			throw new DealerNotFoundException();
+		else
+		{
+			ViewDealerDto dealdto = new ViewDealerDto();
+			dealdto.setDealerId(cardeal.getDealerId());
+			dealdto.setDealerName(cardeal.getDealerName());
+			dealdto.setDealerBranch(cardeal.getDealerBranch());
+			dealdto.setCompanyId(cardeal.getCarCom().getCompanyId());
+			return dealdto;
+		}
+		
 	}
 
 	

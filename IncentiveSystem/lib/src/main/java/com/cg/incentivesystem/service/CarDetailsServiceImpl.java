@@ -1,4 +1,4 @@
-package com.cg.incentivesystem.service;
+ package com.cg.incentivesystem.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import com.cg.incentivesystem.dto.ViewCarDto;
 import com.cg.incentivesystem.entites.CarCompany;
 import com.cg.incentivesystem.entites.CarDetails;
 import com.cg.incentivesystem.exception.CarCompanyNotFoundException;
-
+import com.cg.incentivesystem.exception.CarDetailsNotFoundException;
 import com.cg.incentivesystem.repository.CarCompanyRepository;
 import com.cg.incentivesystem.repository.CarDetailsRepository;
 
@@ -25,7 +25,7 @@ public class CarDetailsServiceImpl implements CarDetailsService {
 
 	@Override
 	public int addCarDetails(CarDetailsDto detdto) {
-		CarCompany carcomp = carcomrepo.getById(detdto.getCompanyId());
+		CarCompany carcomp = carcomrepo.getCompanyById(detdto.getCompanyId());
 		if (carcomp == null)
 			throw new CarCompanyNotFoundException();
 
@@ -35,7 +35,6 @@ public class CarDetailsServiceImpl implements CarDetailsService {
 		carDet.setSpecification(detdto.getSpecification());
 		carDet.setCarCom(carcomp);
 		cardetrepo.save(carDet);
-		System.out.println(detdto);
 		return carDet.getChassisNumber();
 	}
 
@@ -58,22 +57,24 @@ public class CarDetailsServiceImpl implements CarDetailsService {
 
 	@Override
 	public ViewCarDto getCarDetailsById(int chassisNumber) {
-		CarDetails cardet = cardetrepo.getById(chassisNumber);
-		ViewCarDto cardto = new ViewCarDto();
-		cardto.setChassisNumber(cardet.getChassisNumber());
-		cardto.setCarModel(cardet.getCarModel());
-		cardto.setCarPrice(cardet.getCarPrice());
-		cardto.setSpecification(cardet.getSpecification());
-		return cardto;
+		CarDetails cardet = cardetrepo.getCarDetailsByChassisNumber(chassisNumber);
+		if(cardet==null)
+			throw new CarDetailsNotFoundException();
+		else {
+			ViewCarDto cardto = new ViewCarDto();
+			cardto.setChassisNumber(cardet.getChassisNumber());
+			cardto.setCarModel(cardet.getCarModel());
+			cardto.setCarPrice(cardet.getCarPrice());
+			cardto.setSpecification(cardet.getSpecification());
+			return cardto;
+		}
+		
 	}
 
 	@Override
 	public List<ViewCarDto> viewAllCarDetails() {
 		List<CarDetails> cardet = cardetrepo.findAll();
-		List<ViewCarDto> cardto = new ArrayList<ViewCarDto>();
-//		System.out.println(cardet.get(1).getCarModel());
-//		System.out.println(cardet.size());
-		
+		List<ViewCarDto> cardto = new ArrayList<>();
 		for(int i=0;i<cardet.size();i++)
 		{
 			ViewCarDto cardto1 = new ViewCarDto();

@@ -6,29 +6,26 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.cg.incentivesystem.dto.CarCompanyDto;
 import com.cg.incentivesystem.entites.CarCompany;
 import com.cg.incentivesystem.repository.CarCompanyRepository;
+import com.cg.incentivesystem.service.CarCompanyServiceImpl;
 
 @SpringBootTest	
-public class CarCompanyDaoTest {
+class CarCompanyDaoTest {
 	@Autowired
 	CarCompanyRepository comprepo;
-	
-	
+	@Autowired
+	CarCompanyServiceImpl carservice;
 	@Test
-	public void testGetIdByName() {
-		int companyId = comprepo.getIdByName("Maruti");
-		System.out.println(companyId);
-		assertEquals(companyId,1);
+	void testAddCarCompany() {
+		
+		 CarCompanyDto dto = new CarCompanyDto();
+		 dto.setCompanyName("Benz");
+		 CarCompany comp = new CarCompany();
+		 comp.setCompanyName(dto.getCompanyName());
+		 int compid = carservice.addCarCompany(dto);
+		 assertEquals("Benz",comprepo.getCompanyById(compid).getCompanyName());
+		
 	}
-	
-	@Test
-	public void testGetByName() {
-		CarCompany comp = comprepo.getByName("Maruti");
-		System.out.println(comp.getCompanyName());
-		assertEquals( "Maruti",comp.getCompanyName());
-	}
-	
-	
-
 }

@@ -25,24 +25,25 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 
 	@Override
 	public int addCustomer(CustomerDetailsDto custdto) {
-		CarDealer deal = dealrepo.getById(custdto.getDealerID());
+		CarDealer deal = dealrepo.getDealByID(custdto.getDealerID());
 		if (deal == null)
 			throw new DealerNotFoundException();
+		else {
+			CustomerDetails cust = new CustomerDetails();
+			cust.setCustomerName(custdto.getCustomerName());
+			cust.setCustomerMobileNo(custdto.getCustomerMobileNo());
+			cust.setCustomerMail(custdto.getCustomerMail());
 
-		CustomerDetails cust = new CustomerDetails();
-		cust.setCustomerName(custdto.getCustomerName());
-		cust.setCustomerMobileNo(custdto.getCustomerMobileNo());
-		cust.setCustomerMail(custdto.getCustomerMail());
-
-		custrepo.save(cust);
-		System.out.println(custdto);
-		return cust.getCustomerId();
+			custrepo.save(cust);
+			return cust.getCustomerId();
+		}
+		
 	}
 
 	@Override
 	public List<ViewCustomerDto> viewAllCusts() {
 		List<CustomerDetails> custdet = custrepo.findAll();
-		List<ViewCustomerDto> custdto = new ArrayList<ViewCustomerDto>();
+		List<ViewCustomerDto> custdto = new ArrayList<>();
 		for(int i=0;i<custdet.size();i++)
 		{
 			ViewCustomerDto custdtox= new ViewCustomerDto();
@@ -56,14 +57,36 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 	}
 
 	@Override
-	public ViewCustomerDto getCustomerById(int customerId) throws CustomerNotFoundException {
-		CustomerDetails custdet = custrepo.getById(customerId);
-		ViewCustomerDto custdto = new ViewCustomerDto();
-		custdto.setCustomerId(custdet.getCustomerId());
-		custdto.setCustomerName(custdet.getCustomerName());
-		custdto.setCustomerMobileNo(custdet.getCustomerMobileNo());
-		custdto.setCustomerMail(custdet.getCustomerMail());
-		return custdto;
+	public ViewCustomerDto getCustomerById(int customerId) {
+		CustomerDetails custdet = custrepo.getCustomerById(customerId);
+		if(custdet==null)
+			throw new CustomerNotFoundException();
+		else {
+			ViewCustomerDto custdto = new ViewCustomerDto();
+			custdto.setCustomerId(custdet.getCustomerId());
+			custdto.setCustomerName(custdet.getCustomerName());
+			custdto.setCustomerMobileNo(custdet.getCustomerMobileNo());
+			custdto.setCustomerMail(custdet.getCustomerMail());
+			return custdto;
+		}
+		
+	}
+
+	@Override
+	public void updateCustomerById(ViewCustomerDto cutomerDto) throws CustomerNotFoundException {
+		CustomerDetails custdet = custrepo.getCustomerById(cutomerDto.getCustomerId());
+		if(custdet==null)
+			throw new CustomerNotFoundException();
+		else
+		{
+			CustomerDetails cust = new CustomerDetails();
+			cust.setCustomerName(cutomerDto.getCustomerName());
+			cust.setCustomerMobileNo(cutomerDto.getCustomerMobileNo());
+			cust.setCustomerMail(cutomerDto.getCustomerMail());
+
+			custrepo.save(cust);	
+		}
+		
 	}
 
 	

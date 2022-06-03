@@ -12,6 +12,6 @@ public interface CarCompanyRepository extends JpaRepository<CarCompany, Integer>
 	@Query(value="select com from CarCompany com where com.companyName=?1")
 	CarCompany getByName(String compname);
 	
-	@Query(value="select com.companyId from CarCompany com where com.companyName=?1")
-	int getIdByName(String compname);
+	@Query(value="select com from CarCompany com where com.companyId=?1")
+	CarCompany getCompanyById(int companyId);
 }

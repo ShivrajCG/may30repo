@@ -19,7 +19,6 @@ public interface CarDealerService {
 
 	ViewDealerDto getDealerById(int dealerId) throws DealerNotFoundException;
 
-
 	
 }
 
